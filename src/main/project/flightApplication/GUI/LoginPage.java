@@ -1,5 +1,6 @@
 package main.project.flightApplication.GUI;
 
+import main.project.flightApplication.Controller.DBcore;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -7,6 +8,7 @@ import java.awt.event.*;
 public class LoginPage extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private DBcore dbcore = new DBcore();
 
     public LoginPage() {
         setTitle("Login Window");
@@ -39,6 +41,8 @@ public class LoginPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
+        
+        dbcore.addRegisteredUser(username, password,"email", "userType");
 
         // For simplicity, let's just check if the username is "user" and password is "password"
         if (username.equals("user") && password.equals("password")) {
@@ -51,5 +55,6 @@ public class LoginPage extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new LoginPage());
+        System.out.println("Hello World!");
     }
 }
