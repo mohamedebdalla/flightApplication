@@ -1,4 +1,4 @@
-package view.LoginPage;
+package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 import java.awt.*;
