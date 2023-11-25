@@ -1,5 +1,5 @@
 package main.project.flightApplication;
 
-public class Ordinary {
+public class Passport {
     
 }
