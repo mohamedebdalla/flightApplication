@@ -1,13 +1,23 @@
 package main.project.flightApplication.Controller;
 import java.sql.*;
 
-
-
 public class DBcore {
+    private static DBcore instance;
     private Connection dbConnect;
 
-    public DBcore() {
+    private DBcore() {
         createConnection();
+    }
+
+    public static DBcore getInstance() {
+        if (instance == null) {
+            instance = new DBcore();
+        }
+        return instance;
+    }
+
+    public Connection getConnection(){
+        return dbConnect;
     }
 
     private void createConnection() {

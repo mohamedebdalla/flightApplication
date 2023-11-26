@@ -8,7 +8,7 @@ import java.awt.event.*;
 public class LoginPage extends JPanel implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private DBcore dbcore = new DBcore();
+    DBcore dbcore = DBcore.getInstance();
 
     public LoginPage() {
         this.setLayout(new GridLayout(3, 2));
