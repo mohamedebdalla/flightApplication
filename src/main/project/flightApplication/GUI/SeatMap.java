@@ -2,21 +2,44 @@ package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class SeatMap extends JFrame {
     private JPanel mainPanel = new JPanel();
+    private JPanel topPanel = new JPanel();
     private JPanel businessPanel = new JPanel();
     private JPanel comfortPanel = new JPanel();
     private JPanel ordinaryPanel = new JPanel();
+
+    private String clickedButton = null;
 
     SeatMap(){
         this.setTitle("Seat Map");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,500);
         this.setVisible(true);
+
+        JButton backButton = new JButton("Back");
+        JButton nextButton = new JButton("Next");
+        backButton.setLocation(5,0);
+        nextButton.setLocation(15,0);
+
+        backButton.addActionListener(e ->{
+            System.out.println("Go Back");
+        });
+
+        nextButton.addActionListener(e -> {
+            if(clickedButton == null){
+                System.out.println("Please select a button");
+            }
+            else {
+                System.out.println(clickedButton);
+            }
+        });
+
+        topPanel.setPreferredSize(new Dimension(100,30));
+        topPanel.add(backButton);
+        topPanel.add(nextButton);
 
         mainPanel.setLayout(new GridLayout(3,1,0,10));
 
@@ -33,7 +56,7 @@ public class SeatMap extends JFrame {
         mainPanel.add(ordinaryPanel);
 
         this.add(mainPanel, BorderLayout.CENTER);
-        this.add(new JPanel(), BorderLayout.NORTH);
+        this.add(topPanel, BorderLayout.NORTH);
         this.add(new JPanel(), BorderLayout.WEST);
         this.add(new JPanel(), BorderLayout.EAST);
         this.add(new JPanel(), BorderLayout.SOUTH);
@@ -56,7 +79,6 @@ public class SeatMap extends JFrame {
             if (rowIndex != 1) {
                 if (Arrays.asList(specificColumns).contains(columnIndex)) {
                     businessPanel.add(button);
-                    button.addActionListener(new ButtonClickListener(businessPanel));
                     num++;
                 } else {
                     emptySpace.setBackground(Color.black);
@@ -67,7 +89,10 @@ public class SeatMap extends JFrame {
                 emptySpace.setBackground(Color.black);
                 businessPanel.add(emptySpace);
             }
-
+            button.addActionListener(e ->{
+                button.setForeground(Color.red);
+                clickedButton = button.getText();
+            });
         }
     }
 
@@ -87,6 +112,10 @@ public class SeatMap extends JFrame {
                 emptySpace.setBackground(Color.black);
                 comfortPanel.add(emptySpace);
             }
+            button.addActionListener(e ->{
+                button.setForeground(Color.red);
+                clickedButton = button.getText();
+            });
         }
     }
 
@@ -106,31 +135,10 @@ public class SeatMap extends JFrame {
                 ordinaryPanel.add(button);
                 num++;
             }
-        }
-    }
-
-    static class ButtonClickListener implements ActionListener {
-        private final JPanel panel;
-        private JButton selectedButton;
-
-        ButtonClickListener(JPanel panel) {
-            this.panel = panel;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JButton clickedButton = (JButton) e.getSource();
-
-            // Reset the color of the previously selected button
-            if (selectedButton != null) {
-                selectedButton.setForeground(Color.black);
-            }
-
-            // Set the color of the clicked button to a different color
-            clickedButton.setForeground(Color.YELLOW);
-
-            // Update the reference to the currently selected button
-            selectedButton = clickedButton;
+            button.addActionListener(e ->{
+                button.setForeground(Color.red);
+                clickedButton = button.getText();
+            });
         }
     }
 
