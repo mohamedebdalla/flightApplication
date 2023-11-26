@@ -42,7 +42,7 @@ public class LoginPage extends JFrame implements ActionListener {
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
         
-        dbcore.addRegisteredUser(username, password,"email", "userType");
+        dbcore.removeRegisteredUser(username);
 
         // For simplicity, let's just check if the username is "user" and password is "password"
         if (username.equals("user") && password.equals("password")) {
