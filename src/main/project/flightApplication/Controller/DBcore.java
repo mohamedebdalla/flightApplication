@@ -1,6 +1,8 @@
 package main.project.flightApplication.Controller;
 import java.sql.*;
 
+
+
 public class DBcore {
     private Connection dbConnect;
 
@@ -21,6 +23,7 @@ public class DBcore {
         }
     }
     
+    //method for adding users into the database
     public void addRegisteredUser(String username, String password, String email, String userType) {
         try {
             String insertQuery = "INSERT INTO Users (Username, Password, Email, UserType) VALUES (?, ?, ?, ?)";
@@ -34,6 +37,36 @@ public class DBcore {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    //method for removing users from the database
+    public void removeRegisteredUser(String username){
+
+    }
+
+    //method for adding aircraft to the database
+    public void addAircraft(int aircraftID){
+        try{
+            String insertQuery = "INSERT INTO Aircraft (AircraftID) VALUES (?)";
+            try (PreparedStatement preparedStatement = dbConnect.prepareStatement(insertQuery)) {
+                preparedStatement.setInt(1, aircraftID);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            //this should open a pop up window saying that the aircraft already exists
+            //maybe create an exception class which opens a pop up window depending on the error?
+            e.printStackTrace();
+        }
+    }
+
+    //method for removing aircraft from the database
+    public void removeAircraft(int aircraftID){
+
+    }
+
+    //method for adding passengers to the database
+    public void addPassengers(){
+
     }
     
 
