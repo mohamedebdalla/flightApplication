@@ -11,10 +11,11 @@ public class MainGUI extends JFrame {
         label.setHorizontalAlignment(JLabel.CENTER);
 
         //creating buttons
-        JButton b1 = new JButton("Book Flight");
+        JButton b1 = new JButton("Continue as a guest");
         JButton b2 = new JButton("Login");
         JButton b3 = new JButton("Register");
-        JButton b4 = new JButton("Exit");
+        JButton b4 = new JButton("Admin Login");
+        JButton b5 = new JButton("Cancel flight");
 
         //creating panels
         JPanel header = new JPanel();
@@ -36,6 +37,7 @@ public class MainGUI extends JFrame {
         main.add(b2);
         main.add(b3);
         main.add(b4);
+        main.add(b5);
 
         this.setTitle("Airline System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
