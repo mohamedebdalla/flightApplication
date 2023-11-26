@@ -1,3 +1,5 @@
+package main.project.flightApplication.GUI;
+
 import javax.swing.*;
 import java.awt.*;
 
