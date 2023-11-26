@@ -41,7 +41,7 @@ public class DBcore {
 
     //method for removing users from the database
     public void removeRegisteredUser(String username){
-
+        
     }
 
     //method for adding aircraft to the database

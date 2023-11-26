@@ -2,8 +2,12 @@ package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class MainGUI extends JFrame {
+    private LoginPage loginPage;
+
+
     MainGUI(){
         //creating labels
         JLabel label = new JLabel("Airline System");
@@ -49,5 +53,17 @@ public class MainGUI extends JFrame {
         this.add(right, BorderLayout.EAST);
         this.add(footer, BorderLayout.SOUTH);
         this.add(main, BorderLayout.CENTER);
+
+        b2.addActionListener(e -> {
+            if (loginPage == null) {
+                loginPage = new LoginPage();
+            }
+            loginPage.setVisible(true);
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new MainGUI());
+        System.out.println("Hello World!");
     }
 }
