@@ -11,12 +11,6 @@ public class LoginPage extends JPanel implements ActionListener {
     private DBcore dbcore = new DBcore();
 
     public LoginPage() {
-        /*setTitle("Login Window");
-        setSize(500, 350);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);*/
-
-        //JPanel panel = new JPanel();
         this.setLayout(new GridLayout(3, 2));
 
         JLabel usernameLabel = new JLabel("Username:");
