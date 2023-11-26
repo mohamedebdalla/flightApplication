@@ -5,19 +5,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class LoginPage extends JFrame implements ActionListener {
+public class LoginPage extends JPanel implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private DBcore dbcore = new DBcore();
 
     public LoginPage() {
-        setTitle("Login Window");
+        /*setTitle("Login Window");
         setSize(500, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);*/
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 2));
+        //JPanel panel = new JPanel();
+        this.setLayout(new GridLayout(3, 2));
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField();
@@ -27,15 +27,15 @@ public class LoginPage extends JFrame implements ActionListener {
 
         loginButton.addActionListener(this);
 
-        panel.add(usernameLabel);
-        panel.add(usernameField);
-        panel.add(passwordLabel);
-        panel.add(passwordField);
-        panel.add(new JLabel()); // Placeholder
-        panel.add(loginButton);
+        this.add(usernameLabel);
+        this.add(usernameField);
+        this.add(passwordLabel);
+        this.add(passwordField);
+        this.add(new JLabel()); // Placeholder
+        this.add(loginButton);
 
-        add(panel);
-        setVisible(true);
+        //add(panel);
+        setVisible(false);
     }
 
     public void actionPerformed(ActionEvent e) {
