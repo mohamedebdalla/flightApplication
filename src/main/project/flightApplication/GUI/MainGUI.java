@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 public class MainGUI extends JFrame {
     private LoginPage loginPage;
+    private AdminPage adminPage;
 
     private JLabel label = new JLabel("Airline System");
 
@@ -71,6 +72,16 @@ public class MainGUI extends JFrame {
 
         b1.addActionListener(e -> {
             System.out.println("Continue as guest");
+        });
+
+        b4.addActionListener(e -> {
+            if(adminPage == null){
+                adminPage = new AdminPage();
+            }
+            main.setVisible(false);
+            adminPage.setVisible(true);
+            this.add(adminPage, BorderLayout.CENTER);
+            label.setText("Admin Page");
         });
     }
 
