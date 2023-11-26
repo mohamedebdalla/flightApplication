@@ -6,11 +6,15 @@ import java.awt.event.*;
 
 public class MainGUI extends JFrame {
     private LoginPage loginPage;
+    private AdminPage adminPage;
 
+    private JLabel label = new JLabel("Airline System");
 
+    JPanel header = new JPanel();
+    JPanel main = new JPanel();
     MainGUI(){
         //creating labels
-        JLabel label = new JLabel("Airline System");
+
         label.setVerticalAlignment(JLabel.CENTER);
         label.setHorizontalAlignment(JLabel.CENTER);
 
@@ -22,7 +26,7 @@ public class MainGUI extends JFrame {
         JButton b5 = new JButton("Cancel flight");
 
         //creating panels
-        JPanel header = new JPanel();
+
         header.setPreferredSize(new Dimension(50,60));
         header.setLayout(new BorderLayout());
         header.add(label);
@@ -34,7 +38,7 @@ public class MainGUI extends JFrame {
         JPanel footer = new JPanel();
         footer.setPreferredSize(new Dimension(50,50));
 
-        JPanel main = new JPanel();
+
         main.setPreferredSize(new Dimension(85,100));
         main.setLayout(new GridLayout(4,1,10,10));
         main.add(b1);
@@ -54,11 +58,30 @@ public class MainGUI extends JFrame {
         this.add(footer, BorderLayout.SOUTH);
         this.add(main, BorderLayout.CENTER);
 
+        //Action Listeners
+
         b2.addActionListener(e -> {
             if (loginPage == null) {
                 loginPage = new LoginPage();
             }
+            main.setVisible(false);
             loginPage.setVisible(true);
+            this.add(loginPage,BorderLayout.CENTER);
+            label.setText("Login Page");
+        });
+
+        b1.addActionListener(e -> {
+            System.out.println("Continue as guest");
+        });
+
+        b4.addActionListener(e -> {
+            if(adminPage == null){
+                adminPage = new AdminPage();
+            }
+            main.setVisible(false);
+            adminPage.setVisible(true);
+            this.add(adminPage, BorderLayout.CENTER);
+            label.setText("Admin Page");
         });
     }
 
