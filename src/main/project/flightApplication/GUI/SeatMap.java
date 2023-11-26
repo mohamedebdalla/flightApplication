@@ -15,14 +15,13 @@ public class SeatMap extends JFrame {
 
     SeatMap(){
         this.setTitle("Seat Map");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(500,500);
         this.setVisible(true);
 
         JButton backButton = new JButton("Back");
         JButton nextButton = new JButton("Next");
-        backButton.setLocation(5,0);
-        nextButton.setLocation(15,0);
+
 
         backButton.addActionListener(e ->{
             System.out.println("Go Back");
@@ -61,9 +60,6 @@ public class SeatMap extends JFrame {
         this.add(new JPanel(), BorderLayout.EAST);
         this.add(new JPanel(), BorderLayout.SOUTH);
 
-        getBusinessSeat();
-        getComfortSeat();
-        getOrdinarySeat();
     }
 
     public void getBusinessSeat(){
