@@ -9,7 +9,7 @@ import java.awt.event.*;
 public class LoginPage extends JPanel implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private DBcore dbcore = new DBcore();
+    DBcore dbcore = DBcore.getInstance();
     private Admin admin = new Admin();
 
     public LoginPage() {
