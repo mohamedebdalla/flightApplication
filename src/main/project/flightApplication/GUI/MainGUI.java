@@ -8,11 +8,14 @@ public class MainGUI extends JFrame {
     private LoginPage loginPage;
     private AdminPage adminPage;
     private RegisterPage registerPage;
-
+    private UserPage userPage;
     private JLabel label = new JLabel("Airline System");
 
     JPanel header = new JPanel();
     JPanel main = new JPanel();
+    JPanel left = new JPanel();
+    JPanel right = new JPanel();
+    JPanel footer = new JPanel();
     public MainGUI(){
         //creating labels
 
@@ -32,11 +35,11 @@ public class MainGUI extends JFrame {
         header.setLayout(new BorderLayout());
         header.add(label);
 
-        JPanel left = new JPanel();
+
         left.setPreferredSize(new Dimension(50,100));
-        JPanel right = new JPanel();
+
         right.setPreferredSize(new Dimension(50,100));
-        JPanel footer = new JPanel();
+
         footer.setPreferredSize(new Dimension(50,50));
 
 
@@ -62,6 +65,15 @@ public class MainGUI extends JFrame {
         //Action Listeners
 
         b1.addActionListener(e -> {
+            if (userPage == null) {
+                userPage = new UserPage();
+            }
+            setInvisible();
+            userPage.setVisible(true);
+            this.add(userPage.top,BorderLayout.NORTH);
+            this.add(userPage.center,BorderLayout.CENTER);
+            this.add(userPage.side, BorderLayout.WEST);
+            label.setText("User Page");
             System.out.println("Continue as guest");
         });
 
@@ -93,6 +105,14 @@ public class MainGUI extends JFrame {
             this.add(adminPage, BorderLayout.CENTER);
             label.setText("Admin Page");
         });
+    }
+
+    public void setInvisible(){
+        main.setVisible(false);
+        header.setVisible(false);
+        left.setVisible(false);
+        right.setVisible(false);
+        footer.setVisible(false);
     }
 
     public static void main(String[] args) {

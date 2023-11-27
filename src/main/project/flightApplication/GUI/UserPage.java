@@ -3,35 +3,41 @@ package main.project.flightApplication.GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class UserPage extends JFrame {
+public class UserPage extends JPanel {
     // constructor has everything that a normal user can do
     JPanel top = new JPanel(); //will delete once it changes to a panel
     JPanel center = new JPanel();
     JPanel side = new JPanel();
-    JButton browse = new JButton("Browse Flights");
-    JButton cancel = new JButton("Cancel Flight");
+    JLabel label = new JLabel("User Page");
+
+    private JComboBox<String> originField;
+    private JComboBox<String> destField;
+    private JTextField dateField;
+    private String[] origin = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+    private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
 
     public UserPage(){
-
+        JButton browse = new JButton("Search Flights");
+        JButton cancel = new JButton("Cancel Flight");
         top.setPreferredSize(new Dimension(100,40));
-        top.add(new JLabel("User Page"));
-
-        side.setBackground(Color.black);
+        top.add(label);
+        top.setBackground(Color.BLUE);
+        center.setBackground(Color.CYAN);
         side.setPreferredSize(new Dimension(150,100));
         side.setLayout(new FlowLayout(FlowLayout.LEFT));
         side.add(browse);
         side.add(cancel);
 
-        this.setTitle("user page");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500,500);
-        this.setVisible(true);
         this.add(top, BorderLayout.NORTH);
         this.add(center, BorderLayout.CENTER);
         this.add(side, BorderLayout.WEST);
 
         browse.addActionListener(e ->{
-            System.out.println("Browse flight");
+            System.out.println("Search flight");
+            label.setText("Book a flight");
+            Browse();
+
         });
 
         cancel.addActionListener(e ->{
@@ -49,10 +55,34 @@ public class UserPage extends JFrame {
         });
     }
 
-    // add a function that is invoked when it's a registered user
+    public void Browse(){
+        JPanel info = new JPanel();
+        JPanel display = new JPanel();
+        JLabel originLabel = new JLabel("From:");
+        originField = new JComboBox<>(origin);
+        JLabel destLabel = new JLabel("To:");
+        destField = new JComboBox<>(desination);
+        JLabel dateLabel = new JLabel("Date:");
+        dateField = new JTextField("insert date");
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new UserPage());
-        System.out.println("Hello World!");
+        JButton searchButton = new JButton("Search");
+        searchButton.addActionListener(e ->{
+            System.out.println("search");
+        });
+
+        info.setBackground(Color.green);
+        info.setPreferredSize(new Dimension(500,40));
+        info.add(originLabel);
+        info.add(originField);
+        info.add(destLabel);
+        info.add(destField);
+        info.add(dateLabel);
+        info.add(dateField);
+        info.add(searchButton);
+
+        center.setLayout(new BorderLayout());
+        center.add(info, BorderLayout.NORTH);
+        center.add(display, BorderLayout.CENTER);
     }
+    
 }
