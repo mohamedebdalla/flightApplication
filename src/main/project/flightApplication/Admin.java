@@ -45,22 +45,33 @@ public class Admin {
 
     //method to get the list of users who registered from the database, returns an arraylist of strings
     //I think we would need to use this to display them on the GUI
-    public ArrayList<String> getUsers(){
-        ArrayList<String> users = new ArrayList<>();
-        try{
-            String selectQuery = "SELECT Username FROM Users";
+    public ArrayList<String> getRegisteredUsers() {
+        ArrayList<String> registeredUsers = new ArrayList<>();
+        try {
+            String selectQuery = "SELECT * FROM Users WHERE UserType = 'registered'";
             try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    users.add(resultSet.getString("Username"));
+                    // Retrieve all attributes and concatenate them for display
+                    String userAttributes = resultSet.getInt("UserID") + " | " +
+                                            resultSet.getString("Username") + " | " +
+                                            resultSet.getString("Email") + " | " +
+                                            resultSet.getString("UserType") + " | " +
+                                            resultSet.getString("Address") + " | " +
+                                            resultSet.getString("Name") + 
+                                            // Add other attributes as needed
+                                            // ...
+                                            // To retrieve additional columns, add them in the format above
+                                            "\n";
+                    registeredUsers.add(userAttributes);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return registeredUsers;
     }
-
+    
    
     //method for adding aircraft to the database
     public void addAircraft(int aircraftID){
