@@ -45,25 +45,20 @@ public class Admin {
 
     //method to get the list of users who registered from the database, returns an arraylist of strings
     //I think we would need to use this to display them on the GUI
-    public ArrayList<String> getRegisteredUsers() {
-        ArrayList<String> registeredUsers = new ArrayList<>();
+    public ArrayList<RegisteredUser> getRegisteredUsers() {
+        ArrayList<RegisteredUser> registeredUsers = new ArrayList<>();
         try {
             String selectQuery = "SELECT * FROM Users WHERE UserType = 'registered'";
             try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    // Retrieve all attributes and concatenate them for display
-                    String userAttributes = resultSet.getInt("UserID") + " | " +
-                                            resultSet.getString("Username") + " | " +
-                                            resultSet.getString("Email") + " | " +
-                                            resultSet.getString("UserType") + " | " +
-                                            resultSet.getString("Address") + " | " +
-                                            resultSet.getString("Name") + 
-                                            // Add other attributes as needed
-                                            // ...
-                                            // To retrieve additional columns, add them in the format above
-                                            "\n";
-                    registeredUsers.add(userAttributes);
+                    RegisteredUser regUser = new RegisteredUser( resultSet.getString("Name"),
+                                         resultSet.getString("Username"),
+                                         resultSet.getString("Password"),
+                                         resultSet.getString("Email"),
+                                         resultSet.getString("Address"));
+                    // Set other attributes similarly
+                    registeredUsers.add(regUser);
                 }
             }
         } catch (SQLException e) {

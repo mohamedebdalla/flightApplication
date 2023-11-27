@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 import main.project.flightApplication.Admin;
+import main.project.flightApplication.RegisteredUser;
 
 public class DisplayUsers extends JFrame {
     private Admin admin;
@@ -13,21 +14,25 @@ public class DisplayUsers extends JFrame {
 
         admin = new Admin();
         // Fetch users from the database
-        ArrayList<String> users = admin.getRegisteredUsers();
-        System.out.println("Users:");
-        for(String user : users){
-            System.out.println(user);
-        }
-
-        // Create table model and set column names
+        ArrayList<RegisteredUser> users = admin.getRegisteredUsers();
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Users");
+        model.addColumn("Name");
+        model.addColumn("Username");
+        model.addColumn("Password");
+        model.addColumn("Email");
+        model.addColumn("Address");
+        // Add columns for other attributes as needed
 
-        // Add users to the table model
-        for (String user : users) {
-            model.addRow(new Object[]{user});
+        for (RegisteredUser user : users) {
+            model.addRow(new Object[]{
+                    user.getName(),
+                    user.getUsername(),
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getAddress(),
+                    // Add other attributes as needed
+            });
         }
-
         // Create the table
         JTable table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(300, 200));
