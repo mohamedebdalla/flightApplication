@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import main.project.flightApplication.Controller.DBcore;
 
 public class Admin {
-    private DBcore dbcore = new DBcore();
+    private DBcore dbcore = DBcore.getInstance();
 
     public Admin() {
         // TODO Auto-generated constructor stub
@@ -17,7 +17,7 @@ public class Admin {
     public void addRegisteredUser(String username, String password, String email, String userType) {
         try {
             String insertQuery = "INSERT INTO Users (Username, Password, Email, UserType) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(insertQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(insertQuery)) {
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);
                 preparedStatement.setString(3, email);
@@ -34,7 +34,7 @@ public class Admin {
     public void removeRegisteredUser(String username){
         try{
             String deleteQuery = "DELETE FROM Users WHERE Username = ?";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(deleteQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(deleteQuery)) {
                 preparedStatement.setString(1, username);
                 preparedStatement.executeUpdate();
             }
@@ -49,7 +49,7 @@ public class Admin {
         ArrayList<String> registeredUsers = new ArrayList<>();
         try {
             String selectQuery = "SELECT * FROM Users WHERE UserType = 'registered'";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(selectQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     // Retrieve all attributes and concatenate them for display
@@ -77,7 +77,7 @@ public class Admin {
     public void addAircraft(int aircraftID){
         try{
             String insertQuery = "INSERT INTO Aircraft (AircraftID) VALUES (?)";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(insertQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(insertQuery)) {
                 preparedStatement.setInt(1, aircraftID);
                 preparedStatement.executeUpdate();
                 }
@@ -92,7 +92,7 @@ public class Admin {
     public void removeAircraft(int aircraftID){
         try{
             String deleteQuery = "DELETE FROM Aircraft WHERE AircraftID = ?";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(deleteQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(deleteQuery)) {
                 preparedStatement.setInt(1, aircraftID);
                 preparedStatement.executeUpdate();
             }
@@ -105,7 +105,7 @@ public class Admin {
     public void addPassengers(int flightID, String seatNumber, String ticketInsurance, String paymentStatus){
         try{
             String insertQuery = "INSERT INTO passengers (FlightID, SeatNumber, TicketInsurance, PaymentStatus) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(insertQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(insertQuery)) {
                 preparedStatement.setInt(1, flightID);
                 preparedStatement.setString(2, seatNumber);
                 preparedStatement.setString(3, ticketInsurance);
@@ -125,7 +125,7 @@ public class Admin {
     public void removePassengers(int flightID, String seatNumber){
         try{
             String deleteQuery = "DELETE FROM passengers WHERE FlightID = ? AND SeatNumber = ?";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(deleteQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(deleteQuery)) {
                 preparedStatement.setInt(1, flightID);
                 preparedStatement.setString(2, seatNumber);
                 preparedStatement.executeUpdate();
@@ -139,7 +139,7 @@ public class Admin {
     public void addFlight(int flightID, String flightNumber, String origin, String destination, String departureTime, String arrivalTime, int aircraftID){
         try{
             String insertQuery = "INSERT INTO Flights (FlightID, FlightNumber, Origin, Destination, DepartureTime, ArrivalTime, AircraftID) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = dbcore.dbConnect.prepareStatement(insertQuery)) {
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(insertQuery)) {
                 preparedStatement.setInt(1, flightID);
                 preparedStatement.setString(2, flightNumber);
                 preparedStatement.setString(3, origin);
