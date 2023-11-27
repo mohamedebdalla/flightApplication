@@ -13,6 +13,7 @@ public class UserPage extends JPanel {
     private JComboBox<String> originField;
     private JComboBox<String> destField;
     private JTextField dateField;
+    private JTextField flightField;
     private String[] origin = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
     private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
@@ -42,6 +43,8 @@ public class UserPage extends JPanel {
 
         cancel.addActionListener(e ->{
             System.out.println("Cancel flight");
+            label.setText("Cancel a flight");
+            Cancel();
         });
 
         registeredOptions();
@@ -84,5 +87,42 @@ public class UserPage extends JPanel {
         center.add(info, BorderLayout.NORTH);
         center.add(display, BorderLayout.CENTER);
     }
-    
+
+    public void Cancel(){
+        JPanel info = new JPanel();
+        JPanel display = new JPanel();
+        JLabel cancelLabel = new JLabel("Enter Flight ID:");
+        flightField = new JTextField("Enter flight to cancel");
+
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(e ->{
+            System.out.println("cancel");
+            int result = JOptionPane.showConfirmDialog(
+                    null,
+                    "Do you want to cancel your flight?",
+                    "Cancel Confirmation",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Check the user's choice
+            if (result == JOptionPane.YES_OPTION) {
+                // User clicked "Yes," delete flight
+
+                System.out.println("Action confirmed and performed.");
+            } else {
+                // User clicked "No," don't delete flight
+                System.out.println("Action canceled.");
+            }
+        });
+
+        info.setBackground(Color.green);
+        info.setPreferredSize(new Dimension(500,40));
+        info.add(cancelLabel);
+        info.add(flightField);
+        info.add(cancelButton);
+
+        center.setLayout(new BorderLayout());
+        center.add(info, BorderLayout.NORTH);
+        center.add(display, BorderLayout.CENTER);
+    }
+
 }
