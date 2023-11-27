@@ -13,7 +13,7 @@ public class SeatMap extends JFrame {
 
     private String clickedButton = null;
 
-    SeatMap(){
+    public SeatMap(){
         this.setTitle("Seat Map");
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(500,500);

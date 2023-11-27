@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class SeatOption extends JFrame {
     private SeatMap seatMap;
-    SeatOption(){
+    public SeatOption(){
         this.setTitle("Seat Option");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,500);
