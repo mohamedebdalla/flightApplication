@@ -13,7 +13,7 @@ public class MainGUI extends JFrame {
 
     JPanel header = new JPanel();
     JPanel main = new JPanel();
-    MainGUI(){
+    public MainGUI(){
         //creating labels
 
         label.setVerticalAlignment(JLabel.CENTER);
@@ -89,7 +89,6 @@ public class MainGUI extends JFrame {
             if(adminPage == null){
                 adminPage = new AdminPage();
             }
-            main.setVisible(false);
             adminPage.setVisible(true);
             this.add(adminPage, BorderLayout.CENTER);
             label.setText("Admin Page");
