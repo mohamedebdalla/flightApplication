@@ -13,11 +13,11 @@ public class FlightRoute {
         // this.destinationCode = destinationCode;
     }
 
-    public String getOriginName() {
+    public String getOriginName(String flightID) {
         return originName;
     }
 
-    public String getDestinationName() {
+    public String getDestinationName(String flightID) {
         return destinationName;
     }
 
