@@ -1,5 +1,8 @@
 package main.project.flightApplication.GUI;
 
+import main.project.flightApplication.Controller.DBcore;
+import main.project.flightApplication.Admin;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -34,7 +37,7 @@ public class AdminPage extends JFrame{
         //create panels for different pages
         JPanel browsePanel = browsePage();
         JPanel managePanel = managePage();
-        JPanel printPanel = printPage();
+        JPanel printPanel = printPage(this);
 
         //add panels to card panel
         cardPanel.add(browsePanel, "Browse");
@@ -78,6 +81,16 @@ public class AdminPage extends JFrame{
 
         browsePanel.add(leftPanel, BorderLayout.WEST);
 
+        JButton searchFlights = new JButton("Search Flights");
+
+        //add right panel for the main content, it should only render the corresponding page when each button is pressed
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        //rightPanel.setPreferredSize(new Dimension(600, 0));
+        rightPanel.add(searchFlights);
+
+        browsePanel.add(rightPanel, BorderLayout.EAST);
+
         return browsePanel;
     }
 
@@ -103,12 +116,14 @@ public class AdminPage extends JFrame{
         return managePanel;
     }
 
-    private JPanel printPage(){
+    private JPanel printPage(Admin ){
         JPanel printPanel = new JPanel();
         printPanel.setLayout(new BoxLayout(printPanel, BoxLayout.Y_AXIS));
 
         JLabel printLabel = new JLabel("Print Page");
         printPanel.add(printLabel);
+
+
 
         return printPanel;
     }

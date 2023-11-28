@@ -12,6 +12,7 @@ public class Admin {
 
     public Admin() {
         // TODO Auto-generated constructor stub
+        
     }
         //method for adding users into the database
     public void addRegisteredUser(String username, String password, String email, String userType) {
