@@ -68,6 +68,28 @@ public class Admin {
         return registeredUsers;
     }
     
+    public ArrayList<Flight> getAllFlights(){
+        ArrayList<Flight> flights = new ArrayList<>();
+        try{
+            String selectQuery = "SELECT * FROM Flights";
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    Flight flight = new Flight(resultSet.getInt("FlightID"),
+                            resultSet.getString("FlightNumber"),
+                            resultSet.getString("Origin"),
+                            resultSet.getString("Destination"),
+                            resultSet.getString("DepartureDateTime"),
+                            resultSet.getString("ArrivalDateTime"),
+                            resultSet.getInt("AircraftID"));
+                    flights.add(flight);
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return flights;
+    }
    
     //method for adding aircraft to the database
     public void addAircraft(int aircraftID){

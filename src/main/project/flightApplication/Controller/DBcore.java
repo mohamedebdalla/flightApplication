@@ -1,5 +1,8 @@
 package main.project.flightApplication.Controller;
 import java.sql.*;
+import java.util.ArrayList;
+import main.project.flightApplication.Flight;
+
 
 public class DBcore {
     private static DBcore instance;
@@ -47,6 +50,7 @@ public class DBcore {
             e.printStackTrace();
         }
     }
+
 
 
     public void closeConnection() {
