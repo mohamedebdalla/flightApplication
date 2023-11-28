@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class UserPage extends JPanel {
     // constructor has everything that a normal user can do
+    JFrame frame;
     JPanel top = new JPanel(); //will delete once it changes to a panel
     JPanel center = new JPanel();
     JPanel side = new JPanel();
@@ -18,13 +19,14 @@ public class UserPage extends JPanel {
     private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
 
-    public UserPage(){
+    public UserPage(JFrame frame){
+        this.frame = frame;
         JButton browse = new JButton("Search Flights");
         JButton cancel = new JButton("Cancel Flight");
         top.setPreferredSize(new Dimension(100,40));
         top.add(label);
-        top.setBackground(Color.BLUE);
-        center.setBackground(Color.CYAN);
+        top.setBackground(Color.darkGray);
+        center.setBackground(Color.lightGray);
         side.setPreferredSize(new Dimension(150,100));
         side.setLayout(new FlowLayout(FlowLayout.LEFT));
         side.add(browse);
@@ -38,6 +40,7 @@ public class UserPage extends JPanel {
             System.out.println("Search flight");
             label.setText("Book a flight");
             Browse();
+            frame.setSize(800,600);
 
         });
 
@@ -46,8 +49,6 @@ public class UserPage extends JPanel {
             label.setText("Cancel a flight");
             Cancel();
         });
-
-        registeredOptions();
     }
 
     public void registeredOptions(){
@@ -73,7 +74,7 @@ public class UserPage extends JPanel {
             System.out.println("search");
         });
 
-        info.setBackground(Color.green);
+        info.setBackground(Color.lightGray);
         info.setPreferredSize(new Dimension(500,40));
         info.add(originLabel);
         info.add(originField);
@@ -114,7 +115,7 @@ public class UserPage extends JPanel {
             }
         });
 
-        info.setBackground(Color.green);
+        info.setBackground(Color.lightGray);
         info.setPreferredSize(new Dimension(500,40));
         info.add(cancelLabel);
         info.add(flightField);

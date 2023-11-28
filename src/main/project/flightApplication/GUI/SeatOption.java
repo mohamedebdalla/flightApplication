@@ -36,6 +36,10 @@ public class SeatOption extends JFrame {
         ordinary.addActionListener(e ->{
             seatMap = new SeatMap();
             seatMap.getOrdinarySeat();
+//            topPanel.setVisible(false);
+//            mainPanel.setVisible(false);
+//            this.add(seatMap.topPanel, BorderLayout.NORTH);
+//            this.add(seatMap.mainPanel, BorderLayout.CENTER);
         });
         comfort.addActionListener(e ->{
             seatMap = new SeatMap();
