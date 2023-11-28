@@ -31,7 +31,7 @@ public class DisplayUsers extends JFrame {
                     user.getPassword(),
                     user.getAddress(),
                     // Add other attributes as needed
-            });
+            }); 
         }
         // Create the table
         JTable table = new JTable(model);

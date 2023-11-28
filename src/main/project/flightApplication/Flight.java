@@ -9,13 +9,11 @@ public class Flight {
     private FlightRoute route;
     private String flightID;
     
-    public Flight(ArrayList<CrewMember> crew, ArrayList<Passenger> passengers, Aircraft aircraft, String originName, String destinationName, String originCode, String destinationCode, String flightID) {
+    public Flight(ArrayList<CrewMember> crew, ArrayList<Passenger> passengers, Aircraft aircraft, String originName, String destinationName, String flightID) {
         this.crew = crew;
         this.passengers = passengers;
         this.aircraft = aircraft;
-        this.route = new FlightRoute(originName, destinationName, originCode, destinationCode); //composition
+        this.route = new FlightRoute(originName, destinationName); //composition
         this.flightID = flightID;
     }
-
-    
 }
