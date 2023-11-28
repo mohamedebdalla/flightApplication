@@ -12,6 +12,7 @@ public class Admin {
 
     public Admin() {
         // TODO Auto-generated constructor stub
+        
     }
         //method for adding users into the database
     public void addRegisteredUser(String username, String password, String email, String userType) {
@@ -45,25 +46,20 @@ public class Admin {
 
     //method to get the list of users who registered from the database, returns an arraylist of strings
     //I think we would need to use this to display them on the GUI
-    public ArrayList<String> getRegisteredUsers() {
-        ArrayList<String> registeredUsers = new ArrayList<>();
+    public ArrayList<RegisteredUser> getRegisteredUsers() {
+        ArrayList<RegisteredUser> registeredUsers = new ArrayList<>();
         try {
             String selectQuery = "SELECT * FROM Users WHERE UserType = 'registered'";
             try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    // Retrieve all attributes and concatenate them for display
-                    String userAttributes = resultSet.getInt("UserID") + " | " +
-                                            resultSet.getString("Username") + " | " +
-                                            resultSet.getString("Email") + " | " +
-                                            resultSet.getString("UserType") + " | " +
-                                            resultSet.getString("Address") + " | " +
-                                            resultSet.getString("Name") + 
-                                            // Add other attributes as needed
-                                            // ...
-                                            // To retrieve additional columns, add them in the format above
-                                            "\n";
-                    registeredUsers.add(userAttributes);
+                    RegisteredUser regUser = new RegisteredUser( resultSet.getString("Name"),
+                                         resultSet.getString("Username"),
+                                         resultSet.getString("Password"),
+                                         resultSet.getString("Email"),
+                                         resultSet.getString("Address"));
+                    // Set other attributes similarly
+                    registeredUsers.add(regUser);
                 }
             }
         } catch (SQLException e) {
@@ -72,6 +68,28 @@ public class Admin {
         return registeredUsers;
     }
     
+    public ArrayList<Flight> getAllFlights(){
+        ArrayList<Flight> flights = new ArrayList<>();
+        try{
+            String selectQuery = "SELECT * FROM Flights";
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    Flight flight = new Flight(resultSet.getInt("FlightID"),
+                            resultSet.getString("FlightNumber"),
+                            resultSet.getString("Origin"),
+                            resultSet.getString("Destination"),
+                            resultSet.getString("DepartureDateTime"),
+                            resultSet.getString("ArrivalDateTime"),
+                            resultSet.getInt("AircraftID"));
+                    flights.add(flight);
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return flights;
+    }
    
     //method for adding aircraft to the database
     public void addAircraft(int aircraftID){

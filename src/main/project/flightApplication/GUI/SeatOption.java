@@ -26,7 +26,7 @@ public class SeatOption extends JFrame {
         mainPanel.add(comfort);
         mainPanel.add(business);
 
-        this.add(mainPanel, BorderLayout.CENTER);
+        this.add(mainPanel, BorderLayout.CENTER);   
         this.add(topPanel, BorderLayout.NORTH);
         this.add(new JPanel(), BorderLayout.WEST);
         this.add(new JPanel(), BorderLayout.EAST);

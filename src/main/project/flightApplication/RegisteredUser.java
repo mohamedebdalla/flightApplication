@@ -1,18 +1,20 @@
 package main.project.flightApplication;
 
-public class RegisteredUser {
+public class RegisteredUser implements User {
     private String name;
     private String username;
     private String password;
-    private int creditCardNo;
-    private Address address;
+    private String email;
+    // private int creditCardNo; -> commenting out for now, not sure if this needs to be stored in the database
+    private String address; //changed this to a type String because can't use Address class in resultset to get from the database
     
-    public RegisteredUser(String name, String username, String password, int creditCardNo, Address address) {
+    public RegisteredUser(String name, String username, String password, String email, String address) {
+    
         this.name = name;
         this.username = username;
         this.password = password;
-        this.creditCardNo = creditCardNo;
         this.address = address;
+        this.email = email;
     }
 
     public String getName() {
@@ -23,15 +25,20 @@ public class RegisteredUser {
         return username;
     }
 
-    public int getCreditCardNo() {
-        return creditCardNo;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
     public String getPassword() {
         return password;
     }
+
+    public String getEmail(){
+        return email;
+    }
+    // public int getCreditCardNo() {
+    //     return creditCardNo;
+    // }
+
+    public String getAddress() {
+        return address;
+    }
+
+
 }

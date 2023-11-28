@@ -1,5 +1,8 @@
 package main.project.flightApplication.Controller;
 import java.sql.*;
+import java.util.ArrayList;
+import main.project.flightApplication.Flight;
+
 
 public class DBcore {
     private static DBcore instance;
@@ -25,7 +28,7 @@ public class DBcore {
             Class.forName("com.mysql.jdbc.Driver");
             String DB_URL = "jdbc:mysql://localhost:3306/flightdb";
             String DB_USERNAME = "root";
-            String DB_PASSWORD = "password";
+            String DB_PASSWORD = "mohamed123";
             dbConnect = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             System.out.println("Connected to database");
         } catch (ClassNotFoundException | SQLException e) {
@@ -47,6 +50,7 @@ public class DBcore {
             e.printStackTrace();
         }
     }
+
 
 
     public void closeConnection() {
