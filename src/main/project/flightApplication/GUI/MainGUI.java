@@ -66,7 +66,7 @@ public class MainGUI extends JFrame {
 
         b1.addActionListener(e -> {
             if (userPage == null) {
-                userPage = new UserPage();
+                userPage = new UserPage(this);
             }
             setInvisible();
             userPage.setVisible(true);

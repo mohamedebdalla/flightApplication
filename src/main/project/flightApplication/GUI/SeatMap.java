@@ -5,8 +5,8 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class SeatMap extends JFrame {
-    private JPanel mainPanel = new JPanel();
-    private JPanel topPanel = new JPanel();
+    JPanel mainPanel = new JPanel();
+    JPanel topPanel = new JPanel();
     private JPanel businessPanel = new JPanel();
     private JPanel comfortPanel = new JPanel();
     private JPanel ordinaryPanel = new JPanel();
