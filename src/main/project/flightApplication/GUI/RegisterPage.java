@@ -18,8 +18,6 @@ public class RegisterPage extends JFrame{
     DBcore dbcore = DBcore.getInstance();
     private JPanel cardPanel;
     private CardLayout cardLayout;
-    private JPanel innerCardPanel;
-    private CardLayout innerCardLayout;
 
     public RegisterPage(){
         JLabel title = new JLabel("Register");
@@ -117,7 +115,7 @@ public class RegisterPage extends JFrame{
 
                 if(rowsAffected > 0){
                     JOptionPane.showMessageDialog(this, "User created successfully");
-                    showRegisteredPage();
+                    showRegisteredPage(name);
                     return;
                 } else{
                     JOptionPane.showMessageDialog(this, "Error creating user", "Error", JOptionPane.ERROR_MESSAGE);
@@ -131,7 +129,8 @@ public class RegisterPage extends JFrame{
         }
     }
 
-    public void showRegisteredPage(){
+    public void showRegisteredPage(String name){
+        JLabel greetingLabel = new JLabel("Welcome " + name + "!");
         //create buttons for new page
         JButton bookFlightButton = new JButton("Book a flight");
         JButton managePromos = new JButton("See promotions");
@@ -144,6 +143,7 @@ public class RegisterPage extends JFrame{
         menuPanel.add(managePromos);
         menuPanel.add(creditCard);
         menuPanel.add(registeredLogout);
+        menuPanel.add(greetingLabel);
 
         //add action listeners to buttons
         bookFlightButton.addActionListener(e -> showBookFlightsPanel());
@@ -179,11 +179,26 @@ public class RegisterPage extends JFrame{
         JLabel titleLabel = new JLabel("Promotions");
         titlePanel.add(titleLabel);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 2));
+        // Add more components for additional options
+        JButton monthlyNewsletterButton = new JButton("See Monthly Newsletter");
+        JButton freeCompanionTicketButton = new JButton("Check for Free Companion Ticket");
+        JButton loungeDiscountButton = new JButton("Get Lounge Discount Promo Code");
 
+        // Add action listeners to the buttons
+        monthlyNewsletterButton.addActionListener(e -> showMonthlyNewsletter());
+        freeCompanionTicketButton.addActionListener(e -> checkFreeCompanionTicket());
+        loungeDiscountButton.addActionListener(e -> showLoungeDiscountPromoCode());
+
+        // Create a panel to hold the buttons
+        JPanel optionsPanel = new JPanel();
+        optionsPanel.setLayout(new GridLayout(3, 1));
+        optionsPanel.add(monthlyNewsletterButton);
+        optionsPanel.add(freeCompanionTicketButton);
+        optionsPanel.add(loungeDiscountButton);
+
+        // Add components to the main panel
         promosPanel.add(BorderLayout.NORTH, titlePanel);
-        promosPanel.add(BorderLayout.CENTER, panel);
+        promosPanel.add(BorderLayout.CENTER, optionsPanel);
 
         return promosPanel;
     }
@@ -247,6 +262,22 @@ public class RegisterPage extends JFrame{
         //repaint and revalidate the frame
         getContentPane().revalidate();
         getContentPane().repaint();
+
+    }
+
+    private void showMonthlyNewsletter() {
+        // Implement logic to display the monthly newsletter
+        JOptionPane.showMessageDialog(this, "Displaying Monthly Newsletter");
+    }
+
+    private void checkFreeCompanionTicket() {
+        // Implement logic to check if the user has a free companion ticket
+        JOptionPane.showMessageDialog(this, "Checking for Free Companion Ticket");
+    }
+
+    private void showLoungeDiscountPromoCode() {
+        // Implement logic to generate and display the lounge discount promo code
+        JOptionPane.showMessageDialog(this, "Your Lounge Discount Promo Code is: XYZ123");
     }
 
     private void showCreditCardPanel(){
