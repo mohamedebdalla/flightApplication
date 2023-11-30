@@ -7,9 +7,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import main.project.flightApplication.Flight;
 import main.project.flightApplication.Admin;
+import main.project.flightApplication.Controller.FlightController;
 
 public class FlightGUI extends JFrame {
-    private Admin admin = new Admin();
+    private FlightController flightController = new FlightController();
     private int currentIndex = 0;
     private JPanel mainPanel;
     private JButton prevButton;
@@ -18,21 +19,22 @@ public class FlightGUI extends JFrame {
     public JPanel createFlightDetailsPanel(Flight flight) {
         JPanel detailsPanel = new JPanel(new GridLayout(5, 1));
         detailsPanel.setBorder(BorderFactory.createTitledBorder("Flight Details"));
-
+    
         JLabel flightNumberLabel = new JLabel("Flight Number: " + flight.getFlightNumber());
         JLabel originLabel = new JLabel("Origin: " + flight.getOrigin());
         JLabel destinationLabel = new JLabel("Destination: " + flight.getDestination());
-        JLabel departureLabel = new JLabel("Departure: " + flight.getDepartureDateTime());
+        JLabel departureLabel = new JLabel("Departure: " + flight.getDepartureDate());
         JLabel arrivalLabel = new JLabel("Arrival:      " + flight.getArrivalDateTime());
-
+    
         detailsPanel.add(flightNumberLabel);
         detailsPanel.add(originLabel);
         detailsPanel.add(destinationLabel);
         detailsPanel.add(departureLabel);
         detailsPanel.add(arrivalLabel);
-
+    
         return detailsPanel;
     }
+    
 
     public void displayFlight(Flight flight) {
         if (mainPanel != null) {
@@ -50,10 +52,10 @@ public class FlightGUI extends JFrame {
         detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
 
         // Calculate the endIndex based on currentIndex and flights size
-        int endIndex = Math.min(currentIndex + 2, admin.getAllFlights().size());
+        int endIndex = Math.min(currentIndex + 2, flightController.getAllFlights().size());
 
         for (int i = currentIndex; i < endIndex; i++) {
-            detailsPanel.add(createFlightDetailsPanel(admin.getAllFlights().get(i)));
+            detailsPanel.add(createFlightDetailsPanel(flightController.getAllFlights().get(i)));
         }
 
         mainPanel.add(imagePanel);
@@ -116,22 +118,22 @@ public class FlightGUI extends JFrame {
     }
 
     private void updateNextButtonVisibility() {
-        int endIndex = Math.min(currentIndex + 2, admin.getAllFlights().size());
-        if (endIndex >= admin.getAllFlights().size()) {
+        int endIndex = Math.min(currentIndex + 2, flightController.getAllFlights().size());
+        if (endIndex >= flightController.getAllFlights().size()) {
             nextButton.setVisible(false); // Hide next button on the last page
         } else {
             nextButton.setVisible(true); // Show next button if there are more pages
         }
     }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            FlightGUI display = new FlightGUI();
-            Admin admin = new Admin();
-            ArrayList<Flight> flights = admin.getAllFlights();
+    // public static void main(String[] args) {
+    //     SwingUtilities.invokeLater(() -> {
+    //         FlightGUI display = new FlightGUI();
+    //         FlightController flightController = new FlightController(); // Create an instance of FlightController
+    //         ArrayList<Flight> flights = flightController.getAllFlights(); // Call getAllFlights() on the instance
 
-            if (!flights.isEmpty()) {
-                display.displayFlight(flights.get(0));
-            }
-        });
-    }
+    //         if (!flights.isEmpty()) {
+    //             display.displayFlight(flights.get(0));
+    //         }
+    //     });
+    // }
 }

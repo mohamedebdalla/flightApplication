@@ -32,6 +32,7 @@
         "lib/**/*.jar",
         "c:\\Program Files (x86)\\MySQL\\Connector J 8.0\\mysql-connector-j-8.0.31.jar",
         "c:\\Users\\Moe\\Downloads\\javax.mail.jar",
-        "/Users/ganahamed/Downloads/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar"
+        "/Users/ganahamed/Downloads/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar",
+        "c:\\Program Files (x86)\\MySQL\\Connector J 8.0\\mysql-connector-j-8.0.32.jar"
     ]
 }

@@ -116,7 +116,7 @@ public class AdminPage extends JFrame{
         return managePanel;
     }
 
-    private JPanel printPage(Admin ){
+    private JPanel printPage(AdminPage adminPage){
         JPanel printPanel = new JPanel();
         printPanel.setLayout(new BoxLayout(printPanel, BoxLayout.Y_AXIS));
 
