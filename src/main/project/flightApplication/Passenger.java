@@ -4,6 +4,5 @@ public class Passenger {
     int PassengerId;
     int FlightId;
 
-
     
 }
