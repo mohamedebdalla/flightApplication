@@ -31,6 +31,7 @@ public class SeatMap extends JFrame {
 
 
         backButton.addActionListener(e ->{
+            dispose();
             System.out.println("Go Back");
         });
 

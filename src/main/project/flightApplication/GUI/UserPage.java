@@ -28,6 +28,8 @@ public class UserPage extends JPanel {
         this.mainGUI = mainGUI;
         JButton browse = new JButton("Search Flights");
 
+
+
         top.setPreferredSize(new Dimension(100, 40));
         top.add(label);
         top.setBackground(Color.BLUE);
@@ -35,6 +37,7 @@ public class UserPage extends JPanel {
         side.setPreferredSize(new Dimension(150, 100));
         side.setLayout(new FlowLayout(FlowLayout.LEFT));
         side.add(browse);
+
 
         this.setLayout(new BorderLayout());
         this.add(top, BorderLayout.NORTH);
@@ -47,7 +50,19 @@ public class UserPage extends JPanel {
 
         });
 
+        //addBack();
 
+
+
+
+    }
+    public void addBack(){
+        JButton back = new JButton("Back to Main");
+        side.add(back);
+        back.addActionListener(e->{
+            mainGUI.dispose();
+            MainGUI newGui = new MainGUI();
+        });
     }
 
     public void Browse(){
@@ -190,5 +205,33 @@ public class UserPage extends JPanel {
     private void bookFlight(Flight flight){
         SeatOption seatOption = new SeatOption();
     }
+
+    public void forUsers(String name){
+        JButton managePromos = new JButton("Promotions");
+        JButton creditCard = new JButton("Get Credit Card");
+        JButton registeredLogout = new JButton("Logout");
+
+        managePromos.addActionListener(e -> {
+            PromotionManager promotionPage = new PromotionManager();
+        });
+        creditCard.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Thank you for applying for the credit card!");
+        });
+        registeredLogout.addActionListener(e ->{
+            JOptionPane.showMessageDialog(this, "Successfully Logged Out!");
+            mainGUI.dispose();
+            MainGUI newGui = new MainGUI();
+        });
+
+        side.add(creditCard);
+        side.add(managePromos);
+        side.add(registeredLogout);
+        label.setText("Welcome "+ name +"!");
+
+    }
+
+
+
+
 
 }

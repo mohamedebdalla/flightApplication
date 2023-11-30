@@ -9,6 +9,7 @@ import main.project.flightApplication.RegisteredUser;
 import main.project.flightApplication.Controller.DBcore;
 
 public class RegisterPage extends JFrame{
+    private MainGUI gui;
     private JTextField nameField;
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -18,7 +19,8 @@ public class RegisterPage extends JFrame{
     private JPanel cardPanel;
     private CardLayout cardLayout;
 
-    public RegisterPage(){
+    public RegisterPage(MainGUI mainGUI){
+        this.gui = mainGUI;
         JLabel title = new JLabel("Register");
         title.setVerticalAlignment(JLabel.CENTER);
         setSize(800, 600);
@@ -40,7 +42,10 @@ public class RegisterPage extends JFrame{
         JButton registerButton = new JButton("Create account");
         registerButton.addActionListener(e -> {
             if(register()){
-                showRegisteredPage(nameField.getText());
+                gui.displayPage(nameField.getText());
+                this.dispose();
+                //showRegisteredPage(nameField.getText());
+
             }
         });
 
