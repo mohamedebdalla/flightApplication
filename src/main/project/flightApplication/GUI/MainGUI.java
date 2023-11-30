@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainGUI extends JFrame {
-    private LoginGUI loginPage;
     private AdminPage adminPage;
     private RegisterPage registerPage;
     private UserPage userPage;
@@ -64,21 +63,11 @@ public class MainGUI extends JFrame {
         //Action Listeners
 
         b1.addActionListener(e -> {
-            if (userPage == null) {
-                userPage = new UserPage(this);
-            }
-            setInvisible();
-            userPage.setVisible(true);
-            this.setSize(new Dimension(1000,600));
-            this.add(userPage.top,BorderLayout.NORTH);
-            this.add(userPage.center,BorderLayout.CENTER);
-            this.add(userPage.side, BorderLayout.WEST);
-            label.setText("User Page");
-            System.out.println("Continue as guest");
+            displayPage();
         });
 
         b2.addActionListener(e -> {
-            new LoginGUI(this);
+            new LoginGUI(this, this);
         });
 
         b3.addActionListener(e -> {
@@ -107,6 +96,20 @@ public class MainGUI extends JFrame {
         left.setVisible(false);
         right.setVisible(false);
         footer.setVisible(false);
+    }
+
+    public void displayPage(){
+        if (userPage == null) {
+            userPage = new UserPage(this);
+        }
+        setInvisible();
+        userPage.setVisible(true);
+        this.setSize(new Dimension(1000,600));
+        this.add(userPage.top,BorderLayout.NORTH);
+        this.add(userPage.center,BorderLayout.CENTER);
+        this.add(userPage.side, BorderLayout.WEST);
+        label.setText("Browse Flight");
+        System.out.println("Continue as guest");
     }
 
     public static void main(String[] args) {
