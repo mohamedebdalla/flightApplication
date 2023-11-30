@@ -5,11 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import main.project.flightApplication.Controller.DBcore;
+import main.project.flightApplication.GUI.RegisterPage;
+
 
 public class Admin {
     private DBcore dbcore = DBcore.getInstance();
-
     public Admin() {
         // TODO Auto-generated constructor stub
         

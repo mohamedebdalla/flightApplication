@@ -84,7 +84,7 @@ public class RegisterPage extends JFrame{
     }
 
     //function to register user
-    private boolean register(){
+    public boolean register(){
         String name = nameField.getText();
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
