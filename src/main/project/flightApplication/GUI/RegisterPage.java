@@ -2,8 +2,6 @@ package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -39,12 +37,9 @@ public class RegisterPage extends JFrame{
         addressField = new JTextField(200);  
 
         JButton registerButton = new JButton("Create account");
-        registerButton.addActionListener(new ActionListener() {
-            @Override 
-            public void actionPerformed(ActionEvent e){
-                if(register()){
-                    showRegisteredPage(nameField.getText());
-                }
+        registerButton.addActionListener(e -> {
+            if(register()){
+                showRegisteredPage(nameField.getText());
             }
         });
 
