@@ -35,7 +35,7 @@ public class LoginGUI extends JDialog{
             if(isValidUser(usernameField.getText(), passwordField.getText())){
                 System.out.println("valid");
                 JOptionPane.showMessageDialog(null, "Login Successful!");
-                gui.displayPage();
+                gui.displayPage(usernameField.getText());
                 this.dispose();
 
             }

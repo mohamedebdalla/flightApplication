@@ -63,7 +63,7 @@ public class MainGUI extends JFrame {
         //Action Listeners
 
         b1.addActionListener(e -> {
-            displayPage();
+            displayPage(null);
         });
 
         b2.addActionListener(e -> {
@@ -72,7 +72,7 @@ public class MainGUI extends JFrame {
 
         b3.addActionListener(e -> {
             if(registerPage == null){
-                registerPage = new RegisterPage();
+                registerPage = new RegisterPage(this);
             }
             main.setVisible(false);
             registerPage.setVisible(true);
@@ -90,20 +90,20 @@ public class MainGUI extends JFrame {
         });
     }
 
-    public void setInvisible(){
+    public void displayPage(String name){
+        if (userPage == null) {
+            userPage = new UserPage(this);
+        }
         main.setVisible(false);
         header.setVisible(false);
         left.setVisible(false);
         right.setVisible(false);
         footer.setVisible(false);
-    }
-
-    public void displayPage(){
-        if (userPage == null) {
-            userPage = new UserPage(this);
-        }
-        setInvisible();
         userPage.setVisible(true);
+        if(name !=null){
+            userPage.forUsers(name);
+        }
+        userPage.addBack();
         this.setSize(new Dimension(1000,600));
         this.add(userPage.top,BorderLayout.NORTH);
         this.add(userPage.center,BorderLayout.CENTER);
