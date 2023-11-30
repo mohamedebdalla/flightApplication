@@ -38,10 +38,10 @@ public class LoginPage extends JPanel implements ActionListener {
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
         
-        admin.addRegisteredUser(username, password, "email", "userType");
+        //admin.addRegisteredUser(username, password, "email", "userType");
 
         // For simplicity, let's just check if the username is "user" and password is "password"
-        if (username.equals("user") && password.equals("password")) {
+        if (isValidUser(username, password)) {
             JOptionPane.showMessageDialog(this, "Login Successful!");
             // You can add code here to open a new window or perform further actions after successful login
         } else {
@@ -49,5 +49,24 @@ public class LoginPage extends JPanel implements ActionListener {
         }
     }
 
+    private boolean isValidUser(String username, String password) {
+        try{
+            String query = "SELECT * FROM users WHERE username = ? AND password = ? AND userType = ?";
+
+            try(PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(query)){
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                preparedStatement.setString(3, "registered user");
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
 
 }
