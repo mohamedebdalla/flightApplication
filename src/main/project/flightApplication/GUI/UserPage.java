@@ -45,7 +45,7 @@ public class UserPage extends JPanel {
 
         browse.addActionListener(e -> {
             label.setText("Book a flight");
-            tryBrowse();
+            Browse();
 
         });
 
@@ -63,7 +63,7 @@ public class UserPage extends JPanel {
         });
     }
 
-    public void tryBrowse(){
+    public void Browse(){
         //header panel with all the information displayed
         JPanel info = new JPanel();
         //origin selection
@@ -108,15 +108,10 @@ public class UserPage extends JPanel {
                 flightPanel.setBackground(Color.lightGray);
                 flightPanel.setLayout(new BoxLayout(flightPanel, BoxLayout.X_AXIS)); // Horizontal layout
 
-                // Create a panel for the image
                 JLabel flightImageLabel = createImageLabel("flightPic.jpg"); // Load an image for each flight
-                //JPanel imagePanel = new JPanel();
-                /*imagePanel.setBackground(Color.GREEN);
-                imagePanel.add(flightImageLabel);*/
 
                 // Create a panel for flight details
                 JPanel detailsPanel = new JPanel();
-                detailsPanel.setBackground(Color.MAGENTA);
                 detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS)); // Vertical layout
 
                 // Add flight details to the details panel
@@ -173,102 +168,7 @@ public class UserPage extends JPanel {
         repaint();
     }
 
-    public void Browse() {
-        JPanel info = new JPanel();
-        JPanel display = new JPanel(new GridLayout(0, 1)); // Panel to hold flight details
-        JLabel originLabel = new JLabel("From:");
-        originField = new JComboBox<>(departureOrigin.toArray(new String[departureOrigin.size()]));
-        updateOriginField();
-        JLabel destLabel = new JLabel("To:");
-        destField = new JComboBox<>(destination.toArray(new String[destination.size()]));
-        updateDestinationField();
-        JLabel dateLabel = new JLabel("Date:");
-        dateField = new JComboBox<>();
-        JButton searchButton = new JButton("Search");
-        JButton fetchDatesButton = new JButton("Fetch Dates");
 
-        fetchDatesButton.addActionListener(e -> {
-            String selectedOrigin = (String) originField.getSelectedItem();
-            String selectedDestination = (String) destField.getSelectedItem();
-            ArrayList<String> fetchedDates = flightController.getDatesByOriginAndDestination(selectedOrigin, selectedDestination);
-            updateDateField(fetchedDates);
-        });
-
-        searchButton.addActionListener(e -> {
-            mainGUI.setSize(new Dimension(1030,600));
-            System.out.println("search clicked");
-            String selectedOrigin = (String) originField.getSelectedItem();
-            String selectedDestination = (String) destField.getSelectedItem();
-            String selectedDate = (String) dateField.getSelectedItem();
-            ArrayList<Flight> flights = flightController.getFlightByInput(selectedOrigin, selectedDestination, selectedDate);
-        
-            display.removeAll(); // Clear previous flight details
-        
-            for (Flight flight : flights) {
-                // Create a panel for each flight
-                JPanel flightPanel = new JPanel();
-                flightPanel.setBackground(Color.lightGray);
-                flightPanel.setLayout(new BoxLayout(flightPanel, BoxLayout.X_AXIS)); // Horizontal layout
-        
-                // Create a panel for the image
-                JLabel flightImageLabel = createImageLabel("flightPic.jpg"); // Load an image for each flight
-                JPanel imagePanel = new JPanel();
-                imagePanel.setBackground(Color.GREEN);
-                imagePanel.add(flightImageLabel);
-        
-                // Create a panel for flight details
-                JPanel detailsPanel = new JPanel();
-                detailsPanel.setBackground(Color.MAGENTA);
-                detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS)); // Vertical layout
-        
-                // Add flight details to the details panel
-                JLabel flightNumberLabel = new JLabel("Flight Number: " + flight.getFlightNumber());
-                JLabel theOriginLabel = new JLabel("Origin: " + flight.getOrigin());
-                JLabel destinationLabel = new JLabel("Destination: " + flight.getDestination());
-                JLabel departureLabel = new JLabel("Departure: " + flight.getDepartureDate());
-                JLabel arrivalLabel = new JLabel("Arrival:      " + flight.getArrivalDate());
-        
-                detailsPanel.add(flightNumberLabel);
-                detailsPanel.add(theOriginLabel);
-                detailsPanel.add(destinationLabel);
-                detailsPanel.add(departureLabel);
-                detailsPanel.add(arrivalLabel);
-        
-                // Add the image panel and details panel to the flight panel
-                flightPanel.add(imagePanel);
-                flightPanel.add(detailsPanel);
-        
-                display.add(flightPanel); // Add each flight panel to the display panel
-            }
-        
-            display.revalidate(); // Refresh the display
-            display.repaint();
-    
-            
-
-            // Update the UI after adding new flight details
-            center.removeAll();
-            center.add(display, BorderLayout.CENTER);
-            revalidate();
-            repaint();
-        });
-
-        info.setBackground(Color.green);
-        info.setPreferredSize(new Dimension(500, 40));
-        info.add(originLabel);
-        info.add(originField);
-        info.add(destLabel);
-        info.add(destField);
-        info.add(fetchDatesButton);
-        info.add(dateLabel);
-        info.add(dateField);
-        info.add(searchButton);
-
-        center.setLayout(new BorderLayout());
-        center.add(info, BorderLayout.NORTH);
-        revalidate();
-        repaint();
-    }
 
     public void Cancel() {
         // Similar structure to the Browse method, but for canceling flights
