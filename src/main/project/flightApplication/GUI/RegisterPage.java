@@ -285,7 +285,8 @@ public class RegisterPage extends JFrame{
     }
 
     private void showCreditCardPanel(){
-        JPanel creditCardPanel = creditCard();
+        JOptionPane.showMessageDialog(this, "Thank you for applying for the credit card!");
+        /*JPanel creditCardPanel = creditCard();
 
         //create a new JPanel for the "Credit Card" page and add the components
         JPanel pagePanel = new JPanel(new BorderLayout());
@@ -304,7 +305,7 @@ public class RegisterPage extends JFrame{
 
         //repaint and revalidate the frame
         getContentPane().revalidate();
-        getContentPane().repaint();
+        getContentPane().repaint();*/
     }
     
 }
