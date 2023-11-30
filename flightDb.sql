@@ -110,7 +110,7 @@ CREATE TABLE `passengers` (
   `FlightID` int NOT NULL,
   `SeatNumber` varchar(45) NOT NULL,
   `TicketInsurance` varchar(45) NOT NULL,
-  `PaymentStatus` varchar(45) NOT NULL,
+  `TicketNumber` varchar(45) NOT NULL,
   PRIMARY KEY (`PassengerID`),
   KEY `FlightID_idx` (`FlightID`),
   CONSTRAINT `FlightID` FOREIGN KEY (`FlightID`) REFERENCES `flights` (`FlightID`)
@@ -164,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-29 21:23:17
+-- Dump completed on 2023-11-30 13:15:28
