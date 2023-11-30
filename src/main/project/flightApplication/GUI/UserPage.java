@@ -44,14 +44,13 @@ public class UserPage extends JPanel {
         browse.addActionListener(e -> {
             label.setText("Book a flight");
             Browse();
+
         });
 
         cancel.addActionListener(e -> {
             label.setText("Cancel a flight");
             Cancel();
         });
-
-        registeredOptions();
     }
 
     public void registeredOptions() {

@@ -2,10 +2,9 @@ package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class MainGUI extends JFrame {
-    private LoginPage loginPage;
+    private LoginGUI loginPage;
     private AdminPage adminPage;
     private RegisterPage registerPage;
     private UserPage userPage;
@@ -66,7 +65,7 @@ public class MainGUI extends JFrame {
 
         b1.addActionListener(e -> {
             if (userPage == null) {
-                userPage = new UserPage();
+                userPage = new UserPage(this);
             }
             setInvisible();
             userPage.setVisible(true);
@@ -78,13 +77,7 @@ public class MainGUI extends JFrame {
         });
 
         b2.addActionListener(e -> {
-            if (loginPage == null) {
-                loginPage = new LoginPage();
-            }
-            main.setVisible(false);
-            loginPage.setVisible(true);
-            this.add(loginPage,BorderLayout.CENTER);
-            label.setText("Login Page");
+            new LoginGUI(this);
         });
 
         b3.addActionListener(e -> {

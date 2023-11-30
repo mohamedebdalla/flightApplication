@@ -45,7 +45,7 @@ public class FlightGUI extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
         JPanel imagePanel = new JPanel();
-        JLabel imageLabel = createImageLabel("flightPic.jpg");
+        JLabel imageLabel = createImageLabel("flightApplication/flightPic.jpg");
         imagePanel.add(imageLabel);
 
         JPanel detailsPanel = new JPanel();
