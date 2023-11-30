@@ -1,6 +1,12 @@
 package main.project.flightApplication.GUI;
 
 import javax.swing.*;
+
+import main.project.flightApplication.BusinessClassSeat;
+import main.project.flightApplication.ComfortSeat;
+import main.project.flightApplication.OrdinarySeat;
+import main.project.flightApplication.SeatStrategy;
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -18,6 +24,9 @@ public class SeatMap extends JFrame {
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(500,500);
         this.setVisible(true);
+        getBusinessSeat();
+        getComfortSeat();
+        getOrdinarySeat();
 
         JButton backButton = new JButton("Back");
         JButton nextButton = new JButton("Next");
@@ -60,6 +69,8 @@ public class SeatMap extends JFrame {
         this.add(new JPanel(), BorderLayout.EAST);
         this.add(new JPanel(), BorderLayout.SOUTH);
 
+        
+
     }
 
     public void getBusinessSeat(){
@@ -86,8 +97,7 @@ public class SeatMap extends JFrame {
                 businessPanel.add(emptySpace);
             }
             button.addActionListener(e ->{
-                button.setForeground(Color.red);
-                clickedButton = button.getText();
+                buttonClicked(button);
             });
         }
     }
@@ -109,8 +119,7 @@ public class SeatMap extends JFrame {
                 comfortPanel.add(emptySpace);
             }
             button.addActionListener(e ->{
-                button.setForeground(Color.red);
-                clickedButton = button.getText();
+                buttonClicked(button);
             });
         }
     }
@@ -132,10 +141,38 @@ public class SeatMap extends JFrame {
                 num++;
             }
             button.addActionListener(e ->{
-                button.setForeground(Color.red);
-                clickedButton = button.getText();
+                buttonClicked(button);
             });
         }
+    }
+
+    public void verifySeatSelection() {
+        int choice = JOptionPane.showConfirmDialog(this,
+                "You have selected seat number " + clickedButton + ". Do you want to continue with this option?",
+                "Seat Selection Confirmation",
+                JOptionPane.YES_NO_OPTION);
+
+        if (choice == JOptionPane.YES_OPTION) {
+        // Determine the seat type based on the selected button
+        SeatStrategy seatStrategy;
+        int seatNumber = Integer.parseInt(clickedButton.substring(1)); // Extract the seat number
+
+        // Determine the seat type based on seat number ranges
+        if (seatNumber >= 1 && seatNumber <= 8) {
+            seatStrategy = new BusinessClassSeat();
+        } else if (seatNumber >= 9 && seatNumber <= 16) {
+            seatStrategy = new ComfortSeat();
+        } else {
+            seatStrategy = new OrdinarySeat();
+            }
+        }
+    }
+
+    public void buttonClicked(JButton button){
+        button.setForeground(Color.red);
+        clickedButton = button.getText();
+        verifySeatSelection();
+        button.setForeground(Color.black);
     }
 
     public static void main(String[] args) {
