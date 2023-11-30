@@ -129,6 +129,8 @@ public class AdminPage extends JFrame{
         return printPanel;
     }
 
+    
+
     public static void main(String[] args){
         SwingUtilities.invokeLater(() -> new AdminPage());
     }
