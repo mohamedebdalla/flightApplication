@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: localhost    Database: flightdb
+-- Host: 127.0.0.1    Database: flightdb
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -77,8 +77,10 @@ CREATE TABLE `flights` (
   `FlightNumber` varchar(45) NOT NULL,
   `Origin` varchar(45) NOT NULL,
   `Destination` varchar(70) NOT NULL,
-  `DepartureDateTime` varchar(70) NOT NULL,
-  `ArrivalDateTime` varchar(70) NOT NULL,
+  `DepartureDate` varchar(70) NOT NULL,
+  `DepartureTime` varchar(45) NOT NULL,
+  `ArrivalDate` varchar(70) NOT NULL,
+  `ArrivalTime` varchar(45) NOT NULL,
   `AircraftID` int NOT NULL,
   PRIMARY KEY (`FlightID`),
   KEY `AircraftID_idx` (`AircraftID`),
@@ -92,7 +94,7 @@ CREATE TABLE `flights` (
 
 LOCK TABLES `flights` WRITE;
 /*!40000 ALTER TABLE `flights` DISABLE KEYS */;
-INSERT INTO `flights` VALUES (1,'FL001','New York','London','2023-12-23 08:00:00','2023-12-24 14:00:00',1),(2,'FL002','Los Angeles','Tokyo','2023-12-23 09:30:00','2023-12-24 15:30:00',2),(3,'FL003','Paris','Sydney','2023-12-23 11:00:00','2023-12-24 18:00:00',3),(4,'FL004','Dubai','New York','2023-12-23 13:00:00','2023-12-24 20:00:00',4),(5,'FL005','Beijing','Paris','2023-12-24 15:30:00','2023-12-25 22:30:00',5),(6,'FL006','London','Los Angeles','2023-12-24 17:00:00','2023-12-25 23:30:00',6),(7,'FL007','Sydney','New York','2023-12-24 19:45:00','2023-12-25 04:30:00',7),(8,'FL008','Tokyo','Paris','2023-12-25 21:00:00','2023-12-26 05:00:00',8),(9,'FL009','New York','Dubai','2023-12-25 23:15:00','2023-12-26 07:00:00',9),(10,'FL010','Paris','Beijing','2023-12-25 01:30:00','2023-12-26 10:45:00',10),(11,'FL011','Los Angeles','London','2023-12-25 03:45:00','2023-12-26 12:15:00',1),(12,'FL012','New York','Sydney','2023-12-26 06:00:00','2023-12-27 18:00:00',2),(13,'FL013','Tokyo','Dubai','2023-12-26 08:30:00','2023-12-27 15:45:00',3),(14,'FL014','Paris','Beijing','2023-12-26 10:15:00','2023-12-27 20:30:00',4),(15,'FL015','London','Sydney','2023-12-27 12:30:00','2023-12-28 02:30:00',5),(16,'FL016','Dubai','Los Angeles','2023-12-27 14:45:00','2023-12-28 22:00:00',6),(17,'FL017','Beijing','New York','2023-12-27 17:00:00','2023-12-28 23:30:00',7),(18,'FL018','Sydney','Paris','2023-12-28 19:15:00','2023-12-29 03:30:00',8),(19,'FL019','London','Dubai','2023-12-28 21:30:00','2023-12-29 04:45:00',9),(20,'FL020','Tokyo','Los Angeles','2023-12-28 23:45:00','2023-12-29 07:00:00',10),(21,'FL021','New York','London','2023-12-29 01:00:00','2023-12-30 09:00:00',1),(22,'FL022','Los Angeles','Tokyo','2023-12-29 23:15:00','2023-12-30 07:00:00',4),(23,'FL023','Toronto','London','2023-12-29 03:30:00','2023-12-30 12:45:00',2),(24,'FL024','Vancouver','Paris','2023-12-30 05:45:00','2023-12-31 15:00:00',3),(25,'FL025','Montreal','Dubai','2023-12-30 08:00:00','2023-12-31 18:30:00',4),(26,'FL026','Calgary','New York','2023-12-30 10:15:00','2023-12-30 22:30:00',5),(27,'FL027','Ottawa','Los Angeles','2023-12-31 12:30:00','2023-12-31 19:00:00',6),(28,'FL028','Edmonton','Sydney','2023-12-31 14:45:00','2024-01-01 23:30:00',7),(29,'FL029','Quebec City','Tokyo','2023-12-31 17:00:00','2024-01-01 02:15:00',8),(30,'FL030','Halifax','Beijing','2023-12-31 19:15:00','2024-01-02 05:45:00',9);
+INSERT INTO `flights` VALUES (0,'','','','','','','',0),(1,'FL001','Calgary','London','2023-12-23 ','08:00:00','2023-12-24 ','14:00:00',1),(2,'FL002','Calgary','Dubai','2023-12-24 ','09:30:00','2023-12-25 ','15:30:00',2),(3,'FL003','Calgary','Sydney','2023-12-25 ','11:00:00','2023-12-26 ','18:00:00',3),(4,'FL004','Calgary','New York','2023-12-26','13:00:00','2023-12-27 ','20:00:00',4),(5,'FL005','Vancouver','London','2023-12-23 ','15:30:00','2023-12-24 ','22:30:00',5),(6,'FL006','Vancouver','Dubai','2023-12-24 ','17:00:00','2023-12-25 ','23:30:00',6),(7,'FL007','Vancouver','Sydney','2023-12-25 ','19:45:00','2023-12-26 ','04:30:00',7),(8,'FL008','Vancouver','New York','2023-12-26 ','21:00:00','2023-12-26 ','05:00:00',8),(9,'FL009','Toronto','London','2023-12-23 ','23:15:00','2023-12-24 ','07:00:00',9),(10,'FL010','Toronto','Dubai','2023-12-24 ','01:30:00','2023-12-25 ','10:45:00',10),(11,'FL011','Toronto','Sydney','2023-12-25 ','03:45:00','2023-12-26 ','12:15:00',1),(12,'FL012','Toronto','New York','2023-12-26','19:15:00','2024-12-27','05:45:00',9),(13,'FL013','Vancouver','New York','2023-12-23','09:15:00','2023-12-23','18:35:00',2),(14,'FL014','Toronto','New York','2023-12-23','16:00:00','2023-12-24','03:00:00',2),(15,'FL015','Calgary','Dubai','2023-12-25','17:00:00','2023-12-26','09:15:00',5),(16,'FL016','Calgary','Sydney','2023-12-26','08:00:00','2023-12-26','10:00:00',1),(17,'FL017','Vancouver','Sydney','2023-12-26','09:30:00','2023-12-27','02:00:00',3),(18,'FL018','Vancouver','Dubai','2023-12-26','19:00:00','2023-12-27','08:20:00',4);
 /*!40000 ALTER TABLE `flights` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-26 20:52:47
+-- Dump completed on 2023-11-29 21:23:17
