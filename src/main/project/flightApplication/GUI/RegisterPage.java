@@ -42,7 +42,9 @@ public class RegisterPage extends JFrame{
         registerButton.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e){
-                register();
+                if(register()){
+                    showRegisteredPage(nameField.getText());
+                }
             }
         });
 
@@ -86,7 +88,7 @@ public class RegisterPage extends JFrame{
     }
 
     //function to register user
-    private void register(){
+    private boolean register(){
         String name = nameField.getText();
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
@@ -96,7 +98,7 @@ public class RegisterPage extends JFrame{
         //validate the input fields
         if(username.isEmpty() || password.isEmpty() || email.isEmpty() || address.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
 
         //insert the user into the database
@@ -115,10 +117,11 @@ public class RegisterPage extends JFrame{
 
                 if(rowsAffected > 0){
                     JOptionPane.showMessageDialog(this, "User created successfully");
-                    showRegisteredPage(name);
-                    return;
+                    //showRegisteredPage(name);
+                    return true;
                 } else{
                     JOptionPane.showMessageDialog(this, "Error creating user", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
                 }
                 
             }
@@ -126,6 +129,7 @@ public class RegisterPage extends JFrame{
         catch(SQLException e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error creating user", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 
