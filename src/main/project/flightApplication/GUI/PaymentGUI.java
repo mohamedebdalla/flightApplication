@@ -103,7 +103,7 @@ public class PaymentGUI extends JFrame{
         String cvv = cvvField.getText();
 
         try {
-            String query = "INSERT INTO payments (cardholder_name, email, card_number, expiry_date, cvv) " +
+            String query = "INSERT INTO payment (CardholderName, Email, CardNumber, ExpiryDate, CVV) " +
                            "VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(query)) {
@@ -117,6 +117,7 @@ public class PaymentGUI extends JFrame{
 
                 if (rowsAffected > 0) {
                     System.out.println("Payment data inserted into the database successfully.");
+                    JOptionPane.showMessageDialog(PaymentGUI.this, "Payment Successful!");
                 } else {
                     System.out.println("Error inserting payment data into the database.");
                 }
