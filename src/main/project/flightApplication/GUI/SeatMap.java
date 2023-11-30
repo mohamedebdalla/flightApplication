@@ -19,6 +19,8 @@ public class SeatMap extends JFrame {
 
     private String clickedButton = null;
 
+    private double basePrice = 100.00;
+
     public SeatMap(){
         this.setTitle("Seat Map");
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -157,11 +159,17 @@ public class SeatMap extends JFrame {
 
         // Determine the seat type based on seat number ranges
         if (seatNumber >= 1 && seatNumber <= 8) {
-            seatStrategy = new BusinessClassSeat();
+            seatStrategy = new BusinessClassSeat(basePrice);
+            double price = seatStrategy.calculatePrice();
+            PaymentGUI paymentGUI = new PaymentGUI(price);
         } else if (seatNumber >= 9 && seatNumber <= 16) {
-            seatStrategy = new ComfortSeat();
+            seatStrategy = new ComfortSeat(basePrice);
+            double price = seatStrategy.calculatePrice();
+            PaymentGUI paymentGUI = new PaymentGUI(price);
         } else {
-            seatStrategy = new OrdinarySeat();
+            seatStrategy = new OrdinarySeat(basePrice);
+            double price = seatStrategy.calculatePrice();
+            PaymentGUI paymentGUI = new PaymentGUI(price);
             }
         }
     }

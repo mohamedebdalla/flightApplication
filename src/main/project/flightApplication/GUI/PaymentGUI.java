@@ -1,6 +1,7 @@
 package main.project.flightApplication.GUI;
 
 import main.project.flightApplication.Controller.DBcore;
+import main.project.flightApplication.Payment;
 
 import javax.swing.*;
 import java.awt.*;
@@ -117,7 +118,8 @@ public class PaymentGUI extends JFrame{
 
                 if (rowsAffected > 0) {
                     System.out.println("Payment data inserted into the database successfully.");
-                    JOptionPane.showMessageDialog(PaymentGUI.this, "Payment Successful!");
+                    Payment newPayment = new Payment(cardNumber, cardholderName, expiryDate, cvv);
+                    JOptionPane.showMessageDialog(PaymentGUI.this, "Payment Successful! Generating Ticket...");
                 } else {
                     System.out.println("Error inserting payment data into the database.");
                 }
@@ -126,17 +128,6 @@ public class PaymentGUI extends JFrame{
             ex.printStackTrace();
             System.out.println("Error inserting payment data into the database.");
         }
-    }
-
-    public static void main(String[] args) {
-        // Example usage
-        double price = 100.00;
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PaymentGUI(price);
-            }
-        });
     }
     
 }

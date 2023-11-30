@@ -1,16 +1,18 @@
 package main.project.flightApplication;
 
 public class Payment {
-    private CreditCard creditCard;
-    private double amount;
-    private Ticket ticket; 
-    private String date;
+    private String creditCardNumber;
+    private String cardholderName;
+    private String expiryDate;
+    private String cvv;
+    //private double price;
 
-    public Payment(CreditCard creditCard, double amount, Ticket ticket, String date) {
-        this.creditCard = creditCard;
-        this.amount = amount;
-        this.ticket = ticket;
-        this.date = date;
+    public Payment(String creditCardNumber, String cardholderName, String expiryDate, String cvv) {
+        //this.price = price;
+        this.creditCardNumber = creditCardNumber;
+        this.cardholderName = cardholderName;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
     }
 
     //should call an addpassengers 
