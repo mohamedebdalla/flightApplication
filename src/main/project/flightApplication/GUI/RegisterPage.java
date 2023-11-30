@@ -5,6 +5,7 @@ import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import main.project.flightApplication.RegisteredUser;
 import main.project.flightApplication.Controller.DBcore;
 
 public class RegisterPage extends JFrame{
@@ -109,9 +110,11 @@ public class RegisterPage extends JFrame{
                 preparedStatement.setString(6, "registered user");
 
                 int rowsAffected = preparedStatement.executeUpdate();
+                
 
                 if(rowsAffected > 0){
                     JOptionPane.showMessageDialog(this, "User created successfully");
+                    RegisteredUser newUser = new RegisteredUser(name, username, password, email, address);
                     //showRegisteredPage(name);
                     return true;
                 } else{

@@ -1,5 +1,5 @@
 package main.project.flightApplication;
 
-interface SeatStrategy {
+public interface SeatStrategy {
     double calculatePrice(double basePrice);
 }
