@@ -69,6 +69,7 @@ public class MainGUI extends JFrame {
             }
             setInvisible();
             userPage.setVisible(true);
+            this.setSize(new Dimension(1000,600));
             this.add(userPage.top,BorderLayout.NORTH);
             this.add(userPage.center,BorderLayout.CENTER);
             this.add(userPage.side, BorderLayout.WEST);
