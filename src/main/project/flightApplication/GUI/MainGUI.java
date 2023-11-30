@@ -77,37 +77,7 @@ public class MainGUI extends JFrame {
         });
 
         b2.addActionListener(e -> {
-            Object[] options = {"Option 1", "Option 2", "Option 3"};
-
-            // Show the option dialog and get the user's choice
-            int choice = JOptionPane.showOptionDialog(
-                    null, // Parent component, null for default
-                    "Select an option:", // Message to be displayed
-                    "Option Dialog", // Dialog title
-                    JOptionPane.DEFAULT_OPTION, // Option type
-                    JOptionPane.INFORMATION_MESSAGE, // Message type
-                    null, // Icon (null for default)
-                    options, // Options array
-                    options[0] // Default option
-            );
-
-            switch (choice) {
-                case 0:
-                    System.out.println("User chose REGISTERED USER. int: " + choice);
-                    new LoginGUI(this, choice);
-                    break;
-                case 1:
-                    System.out.println("User chose ADMIN. int: " + choice);
-                    new LoginGUI(this, choice);
-                    break;
-                case 2:
-                    System.out.println("User chose CREW. int: " + choice);
-                    new LoginGUI(this, choice);
-                    break;
-                case JOptionPane.CLOSED_OPTION:
-                    System.out.println("User closed the dialog without making a choice");
-                    break;
-            }
+            new LoginGUI(this);
         });
 
         b3.addActionListener(e -> {

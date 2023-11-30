@@ -23,14 +23,14 @@ public class RegisterPage extends JFrame{
         JLabel title = new JLabel("Register");
         title.setVerticalAlignment(JLabel.CENTER);
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
         //create components 
         JLabel nameLabel = new JLabel("Name");
         JLabel usernameLabel = new JLabel("Username");
         JLabel passwordLabel = new JLabel("Password");
         JLabel emailLabel = new JLabel("Email");
-        JLabel adressLabel = new JLabel("Address");
+        JLabel addressLabel = new JLabel("Address");
 
         nameField = new JTextField(20);
         usernameField = new JTextField(20);
@@ -66,7 +66,7 @@ public class RegisterPage extends JFrame{
         panel.add(passwordField);
         panel.add(emailLabel);
         panel.add(emailField);
-        panel.add(adressLabel);
+        panel.add(addressLabel);
         panel.add(addressField);
         panel.add(new JLabel());
 

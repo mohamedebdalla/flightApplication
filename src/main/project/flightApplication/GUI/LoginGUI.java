@@ -5,16 +5,19 @@ import main.project.flightApplication.Admin;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginGUI extends JDialog{
-    LoginController loginController = new LoginController();
+    LoginController loginController;
     private JTextField usernameField;
     private JPasswordField passwordField;
     boolean loginValue;
     DBcore dbcore = DBcore.getInstance();
     private Admin admin = new Admin();
 
-    public LoginGUI(Frame parent, int i) {
+    public LoginGUI(Frame parent) {
         super(parent, "Login", true);
 
         // Create components
@@ -27,9 +30,15 @@ public class LoginGUI extends JDialog{
         JButton loginButton = new JButton("Login");
 
         loginButton.addActionListener(e ->{
-            this.loginValue = onLogin(i);
-            if(loginValue){
-                System.out.println("Go to next page");
+            System.out.println("please work");
+            //loginController = new LoginController(usernameField.getText(), passwordField.getText());
+            if(isValidUser(usernameField.getText(), passwordField.getText())){
+                System.out.println("valid");
+                JOptionPane.showMessageDialog(null, "Login Successful!");
+            }
+            else {
+                System.out.println("not valid");
+                JOptionPane.showMessageDialog(null, "Invalid username or password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -53,23 +62,25 @@ public class LoginGUI extends JDialog{
         setVisible(true);
     }
 
-    public boolean onLogin(int i){
-        if (i == 0){
-            System.out.println("User");
-            return loginController.validateUserLogin(usernameField.getText(), passwordField.getText());
-        }
-        if (i == 1){
-            System.out.println("Admin");
-            return loginController.validateAdminLogin(usernameField.getText(), passwordField.getText());
-        }
-        if (i == 1){
-            System.out.println("Crew");
-            return loginController.validateCrewLogin(usernameField.getText(), passwordField.getText());
-        }
-        else{
+    public boolean isValidUser(String username, String password) {
+        try{
+            String query = "SELECT * FROM users WHERE username = ? AND password = ? AND userType = ?";
+
+            try(PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(query)){
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                preparedStatement.setString(3, "registered user");
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
             return false;
         }
     }
+
 
 
 }
