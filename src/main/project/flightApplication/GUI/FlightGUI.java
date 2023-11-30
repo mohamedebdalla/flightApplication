@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import main.project.flightApplication.Flight;
-import main.project.flightApplication.Admin;
 import main.project.flightApplication.Controller.FlightController;
 
 public class FlightGUI extends JFrame {
@@ -24,7 +23,7 @@ public class FlightGUI extends JFrame {
         JLabel originLabel = new JLabel("Origin: " + flight.getOrigin());
         JLabel destinationLabel = new JLabel("Destination: " + flight.getDestination());
         JLabel departureLabel = new JLabel("Departure: " + flight.getDepartureDate());
-        JLabel arrivalLabel = new JLabel("Arrival:      " + flight.getArrivalDateTime());
+        JLabel arrivalLabel = new JLabel("Arrival:      " + flight.getArrivalTime());
     
         detailsPanel.add(flightNumberLabel);
         detailsPanel.add(originLabel);
@@ -45,6 +44,7 @@ public class FlightGUI extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
         JPanel imagePanel = new JPanel();
+        imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.Y_AXIS));
         JLabel imageLabel = createImageLabel("flightApplication/flightPic.jpg");
         imagePanel.add(imageLabel);
 
@@ -101,7 +101,7 @@ public class FlightGUI extends JFrame {
     }
     
 
-    private JLabel createImageLabel(String imagePath) {
+    public JLabel createImageLabel(String imagePath) {
         ImageIcon imageIcon = new ImageIcon(imagePath);
         Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(image);

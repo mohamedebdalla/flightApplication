@@ -37,7 +37,7 @@ public class AdminPage extends JFrame{
         //create panels for different pages
         JPanel browsePanel = browsePage();
         JPanel managePanel = managePage();
-        JPanel printPanel = printPage();
+        JPanel printPanel =  printPage(this);
 
         //add panels to card panel
         cardPanel.add(browsePanel, "Browse");

@@ -7,10 +7,12 @@ import main.project.flightApplication.Flight;
 import main.project.flightApplication.Controller.FlightController;
 
 public class UserPage extends JPanel {
+    private MainGUI mainGUI;
     public JPanel top = new JPanel();
     public JPanel center = new JPanel();
     public JPanel side = new JPanel();
     private JLabel label = new JLabel("User Page");
+    // private JLabel imageLabel = createImageLabel("flightPic.jpg");
     private FlightController flightController = new FlightController();
     private JComboBox<String> originField;
     private JComboBox<String> destField;
@@ -23,7 +25,8 @@ public class UserPage extends JPanel {
     private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
     
 
-    public UserPage() {
+    public UserPage(MainGUI mainGUI) {
+        this.mainGUI = mainGUI;
         JButton browse = new JButton("Search Flights");
         JButton cancel = new JButton("Cancel Flight");
 
@@ -87,28 +90,47 @@ public class UserPage extends JPanel {
             String selectedDestination = (String) destField.getSelectedItem();
             String selectedDate = (String) dateField.getSelectedItem();
             ArrayList<Flight> flights = flightController.getFlightByInput(selectedOrigin, selectedDestination, selectedDate);
-
+        
             display.removeAll(); // Clear previous flight details
-
+        
             for (Flight flight : flights) {
+                // Create a panel for each flight
                 JPanel flightPanel = new JPanel();
-                JPanel detailsPanel = new JPanel(new GridLayout(5, 1));
-                detailsPanel.setBorder(BorderFactory.createTitledBorder("Flight Details"));
-
+                flightPanel.setLayout(new BoxLayout(flightPanel, BoxLayout.X_AXIS)); // Horizontal layout
+        
+                // Create a panel for the image
+                JLabel flightImageLabel = createImageLabel("flightPic.jpg"); // Load an image for each flight
+                JPanel imagePanel = new JPanel();
+                imagePanel.add(flightImageLabel);
+        
+                // Create a panel for flight details
+                JPanel detailsPanel = new JPanel();
+                detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS)); // Vertical layout
+        
+                // Add flight details to the details panel
                 JLabel flightNumberLabel = new JLabel("Flight Number: " + flight.getFlightNumber());
                 JLabel theOriginLabel = new JLabel("Origin: " + flight.getOrigin());
                 JLabel destinationLabel = new JLabel("Destination: " + flight.getDestination());
                 JLabel departureLabel = new JLabel("Departure: " + flight.getDepartureDate());
-                JLabel arrivalLabel = new JLabel("Arrival:      " + flight.getArrivalDateTime());
-
+                JLabel arrivalLabel = new JLabel("Arrival:      " + flight.getArrivalDate());
+        
                 detailsPanel.add(flightNumberLabel);
                 detailsPanel.add(theOriginLabel);
                 detailsPanel.add(destinationLabel);
                 detailsPanel.add(departureLabel);
                 detailsPanel.add(arrivalLabel);
-
-                display.add(detailsPanel); // Add each flight details panel to the display panel
+        
+                // Add the image panel and details panel to the flight panel
+                flightPanel.add(imagePanel);
+                flightPanel.add(detailsPanel);
+        
+                display.add(flightPanel); // Add each flight panel to the display panel
             }
+        
+            display.revalidate(); // Refresh the display
+            display.repaint();
+    
+            
 
             // Update the UI after adding new flight details
             center.removeAll();
@@ -156,5 +178,12 @@ public class UserPage extends JPanel {
         String[] datesArray = dates.toArray(new String[0]);
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(datesArray);
         dateField.setModel(model);
+    }
+
+    public JLabel createImageLabel(String imagePath) {
+        ImageIcon imageIcon = new ImageIcon(imagePath);
+        Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(image);
+        return new JLabel(scaledIcon);
     }
 }

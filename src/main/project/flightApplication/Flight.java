@@ -14,7 +14,6 @@ public class Flight {
     private String departureTime;
     private String arrivalDate;
     private String arrivalTime;
-    private String arrivalDateTime;
     private String origin;
     private String destination;
     private int aircraftID;
@@ -32,13 +31,13 @@ public class Flight {
         this.arrivalTime = ArrivalTime;
         this.aircraftID = AircraftID;
     }
-    public Flight(ArrayList<CrewMember> crew, ArrayList<Passenger> passengers, Aircraft aircraft, String originName, String destinationName, int flightID) {
-        this.crew = crew;
-        this.passengers = passengers;
-        this.aircraft = aircraft;
-        this.route = new FlightRoute(originName, destinationName); //composition
-        this.flightID = flightID;
-    }
+    // public Flight(ArrayList<CrewMember> crew, ArrayList<Passenger> passengers, Aircraft aircraft, String originName, String destinationName, int flightID) {
+    //     this.crew = crew;
+    //     this.passengers = passengers;
+    //     this.aircraft = aircraft;
+    //     this.route = new FlightRoute(originName, destinationName); //composition
+    //     this.flightID = flightID;
+    // }
     
     // Getters
     public ArrayList<CrewMember> getCrew() {
@@ -79,10 +78,6 @@ public class Flight {
 
     public String getArrivalTime() {
         return arrivalTime;
-    }
-
-    public String getArrivalDateTime() {
-        return arrivalDateTime;
     }
 
     public String getOrigin() {
