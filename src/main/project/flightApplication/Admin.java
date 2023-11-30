@@ -49,7 +49,7 @@ public class Admin {
     public ArrayList<RegisteredUser> getRegisteredUsers() {
         ArrayList<RegisteredUser> registeredUsers = new ArrayList<>();
         try {
-            String selectQuery = "SELECT * FROM Users WHERE UserType = 'registered'";
+            String selectQuery = "SELECT * FROM Users WHERE UserType = 'registered user'";
             try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
