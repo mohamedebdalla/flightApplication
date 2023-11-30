@@ -138,6 +138,7 @@ CREATE TABLE `payment` (
   `Email` varchar(100) NOT NULL,
   `CardNumber` varchar(45) NOT NULL,
   `ExpiryDate` varchar(45) NOT NULL,
+  `CVV` varchar(45) NOT NULL,
   PRIMARY KEY (`CardholderName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
