@@ -39,6 +39,7 @@ public class AdminPage extends JFrame{
         JPanel managePanel = managePage();
         JPanel printPanel = printPage(this);
 
+
         //add panels to card panel
         cardPanel.add(browsePanel, "Browse");
         cardPanel.add(managePanel, "Manage");

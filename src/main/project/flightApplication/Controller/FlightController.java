@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import main.project.flightApplication.GUI.FlightGUI;
 
 import main.project.flightApplication.Flight;
 
@@ -28,6 +27,7 @@ public class FlightController {
                             resultSet.getString("ArrivalDate"),
                             resultSet.getString("ArrivalTime"),
                             resultSet.getInt("AircraftID"));
+                            
                     flights.add(flight);
                 }
             }
