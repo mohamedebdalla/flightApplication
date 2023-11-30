@@ -24,9 +24,7 @@ public class SeatMap extends JFrame {
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(500,500);
         this.setVisible(true);
-        getBusinessSeat();
-        getComfortSeat();
-        getOrdinarySeat();
+
 
         JButton backButton = new JButton("Back");
         JButton nextButton = new JButton("Next");

@@ -28,7 +28,6 @@ public class UserPage extends JPanel {
         this.mainGUI = mainGUI;
         JButton browse = new JButton("Search Flights");
 
-
         top.setPreferredSize(new Dimension(100, 40));
         top.add(label);
         top.setBackground(Color.BLUE);
@@ -36,7 +35,6 @@ public class UserPage extends JPanel {
         side.setPreferredSize(new Dimension(150, 100));
         side.setLayout(new FlowLayout(FlowLayout.LEFT));
         side.add(browse);
-
 
         this.setLayout(new BorderLayout());
         this.add(top, BorderLayout.NORTH);
@@ -49,9 +47,8 @@ public class UserPage extends JPanel {
 
         });
 
+
     }
-
-
 
     public void Browse(){
         //header panel with all the information displayed
@@ -193,4 +190,5 @@ public class UserPage extends JPanel {
     private void bookFlight(Flight flight){
         SeatOption seatOption = new SeatOption();
     }
+
 }
