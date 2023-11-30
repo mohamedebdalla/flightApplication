@@ -10,15 +10,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginGUI extends JDialog{
+    private MainGUI gui;
     LoginController loginController;
     private JTextField usernameField;
     private JPasswordField passwordField;
-    boolean loginValue;
     DBcore dbcore = DBcore.getInstance();
     private Admin admin = new Admin();
 
-    public LoginGUI(Frame parent) {
+    public LoginGUI(Frame parent, MainGUI mainGUI) {
         super(parent, "Login", true);
+        this.gui = mainGUI;
 
         // Create components
         JLabel usernameLabel = new JLabel("Username:");
@@ -31,10 +32,12 @@ public class LoginGUI extends JDialog{
 
         loginButton.addActionListener(e ->{
             System.out.println("please work");
-            //loginController = new LoginController(usernameField.getText(), passwordField.getText());
             if(isValidUser(usernameField.getText(), passwordField.getText())){
                 System.out.println("valid");
                 JOptionPane.showMessageDialog(null, "Login Successful!");
+                gui.displayPage();
+                this.dispose();
+
             }
             else {
                 System.out.println("not valid");
@@ -80,6 +83,7 @@ public class LoginGUI extends JDialog{
             return false;
         }
     }
+
 
 
 
