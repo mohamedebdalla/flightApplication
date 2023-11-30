@@ -27,7 +27,7 @@ public class UserPage extends JPanel {
     public UserPage(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
         JButton browse = new JButton("Search Flights");
-        JButton cancel = new JButton("Cancel Flight");
+
 
         top.setPreferredSize(new Dimension(100, 40));
         top.add(label);
@@ -36,7 +36,7 @@ public class UserPage extends JPanel {
         side.setPreferredSize(new Dimension(150, 100));
         side.setLayout(new FlowLayout(FlowLayout.LEFT));
         side.add(browse);
-        side.add(cancel);
+
 
         this.setLayout(new BorderLayout());
         this.add(top, BorderLayout.NORTH);
@@ -49,19 +49,9 @@ public class UserPage extends JPanel {
 
         });
 
-        cancel.addActionListener(e -> {
-            label.setText("Cancel a flight");
-            Cancel();
-        });
     }
 
-    public void registeredOptions() {
-        JButton apply = new JButton("Get Credit Card");
-        side.add(apply);
-        apply.addActionListener(e -> {
-            System.out.println("Apply for cc");
-        });
-    }
+
 
     public void Browse(){
         //header panel with all the information displayed
@@ -114,6 +104,12 @@ public class UserPage extends JPanel {
                 JPanel detailsPanel = new JPanel();
                 detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS)); // Vertical layout
 
+                JButton bookButton = new JButton("Book Flight");
+
+                bookButton.addActionListener(bookingEvent ->{
+                    bookFlight(flight);
+                });
+
                 // Add flight details to the details panel
                 JLabel flightNumberLabel = new JLabel("Flight Number: " + flight.getFlightNumber());
                 JLabel theOriginLabel = new JLabel("Origin: " + flight.getOrigin());
@@ -130,14 +126,13 @@ public class UserPage extends JPanel {
                 // Add the image panel and details panel to the flight panel
                 flightPanel.add(flightImageLabel, BorderLayout.EAST);
                 flightPanel.add(detailsPanel, BorderLayout.CENTER);
+                flightPanel.add(bookButton, BorderLayout.SOUTH);
 
                 display.add(flightPanel); // Add each flight panel to the display panel
             }
 
             display.revalidate(); // Refresh the display
             display.repaint();
-
-
 
             // Update the UI after adding new flight details
 
@@ -146,8 +141,6 @@ public class UserPage extends JPanel {
             repaint();
 
         });
-
-
 
         //properties of the info bar
         info.setBackground(Color.green);
@@ -169,10 +162,6 @@ public class UserPage extends JPanel {
     }
 
 
-
-    public void Cancel() {
-        // Similar structure to the Browse method, but for canceling flights
-    }
 
     public void updateDestinationField() {
         int size = destination.size();
@@ -199,5 +188,9 @@ public class UserPage extends JPanel {
         Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(image);
         return new JLabel(scaledIcon);
+    }
+
+    private void bookFlight(Flight flight){
+        SeatOption seatOption = new SeatOption();
     }
 }

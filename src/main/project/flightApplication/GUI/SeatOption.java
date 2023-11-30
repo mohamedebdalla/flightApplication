@@ -7,7 +7,7 @@ public class SeatOption extends JFrame {
     private SeatMap seatMap;
     public SeatOption(){
         this.setTitle("Seat Option");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(500,500);
         this.setVisible(true);
 
