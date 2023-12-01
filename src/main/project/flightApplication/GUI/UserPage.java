@@ -203,7 +203,7 @@ public class UserPage extends JPanel {
     }
 
     private void bookFlight(Flight flight){
-        SeatOption seatOption = new SeatOption();
+        SeatOption seatOption = new SeatOption(flight);
     }
 
     public void forUsers(String name){

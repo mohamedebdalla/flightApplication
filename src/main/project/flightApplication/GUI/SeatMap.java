@@ -1,14 +1,15 @@
 package main.project.flightApplication.GUI;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.Arrays;
 
 import main.project.flightApplication.BusinessClassSeat;
 import main.project.flightApplication.ComfortSeat;
 import main.project.flightApplication.OrdinarySeat;
 import main.project.flightApplication.SeatStrategy;
+import main.project.flightApplication.Flight;
 
-import java.awt.*;
-import java.util.Arrays;
 
 public class SeatMap extends JFrame {
     JPanel mainPanel = new JPanel();
@@ -21,7 +22,7 @@ public class SeatMap extends JFrame {
 
     private double basePrice = 100.00;
 
-    public SeatMap(){
+    public SeatMap(Flight flight){
         this.setTitle("Seat Map");
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(500,500);
@@ -74,7 +75,7 @@ public class SeatMap extends JFrame {
 
     }
 
-    public void getBusinessSeat(){
+    public void getBusinessSeat(Flight flight){
         businessPanel.setLayout(new GridLayout(3,8,10,10));
         Integer[] specificColumns = {0, 2, 5, 7};
         int num = 1;
@@ -98,12 +99,12 @@ public class SeatMap extends JFrame {
                 businessPanel.add(emptySpace);
             }
             button.addActionListener(e ->{
-                buttonClicked(button);
+                buttonClicked(flight, button);
             });
         }
     }
 
-    public void getComfortSeat(){
+    public void getComfortSeat(Flight flight){
         comfortPanel.setLayout(new GridLayout(3,8,10,10));
         Integer[] specificColumns = {0, 2, 5, 7};
         int num = 9;
@@ -120,12 +121,12 @@ public class SeatMap extends JFrame {
                 comfortPanel.add(emptySpace);
             }
             button.addActionListener(e ->{
-                buttonClicked(button);
+                buttonClicked(flight, button);
             });
         }
     }
 
-    public void getOrdinarySeat(){
+    public void getOrdinarySeat(Flight flight){
         ordinaryPanel.setLayout(new GridLayout(3,8,10,10));
         Integer[] specificColumns = {3, 4};
         int num = 21;
@@ -142,12 +143,12 @@ public class SeatMap extends JFrame {
                 num++;
             }
             button.addActionListener(e ->{
-                buttonClicked(button);
+                buttonClicked(flight, button);
             });
         }
     }
 
-    public void verifySeatSelection() {
+    public void verifySeatSelection(Flight flight) {
         int choice = JOptionPane.showConfirmDialog(this,
                 "You have selected seat number " + clickedButton + ". Do you want to continue with this option?",
                 "Seat Selection Confirmation",
@@ -162,28 +163,28 @@ public class SeatMap extends JFrame {
         if (seatNumber >= 1 && seatNumber <= 8) {
             seatStrategy = new BusinessClassSeat(basePrice);
             double price = seatStrategy.calculatePrice();
-            PaymentGUI paymentGUI = new PaymentGUI(price);
+            PaymentGUI paymentGUI = new PaymentGUI(flight, price, seatNumber);
         } else if (seatNumber >= 9 && seatNumber <= 16) {
             seatStrategy = new ComfortSeat(basePrice);
             double price = seatStrategy.calculatePrice();
-            PaymentGUI paymentGUI = new PaymentGUI(price);
+            PaymentGUI paymentGUI = new PaymentGUI(flight, price, seatNumber);
         } else {
             seatStrategy = new OrdinarySeat(basePrice);
             double price = seatStrategy.calculatePrice();
-            PaymentGUI paymentGUI = new PaymentGUI(price);
+            PaymentGUI paymentGUI = new PaymentGUI(flight, price, seatNumber);
             }
         }
     }
 
-    public void buttonClicked(JButton button){
+    public void buttonClicked(Flight flight, JButton button){
         button.setForeground(Color.red);
         clickedButton = button.getText();
-        verifySeatSelection();
+        verifySeatSelection(flight);
         button.setForeground(Color.black);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SeatMap());
-        System.out.println("Hello World!");
-    }
+    // public static void main(String[] args) {
+    //     SwingUtilities.invokeLater(() -> new SeatMap());
+    //     System.out.println("Hello World!");
+    // }
 }

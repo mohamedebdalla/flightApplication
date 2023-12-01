@@ -5,14 +5,14 @@ public class Payment {
     private String cardholderName;
     private String expiryDate;
     private String cvv;
-    //private double price;
+    private double amountPaid;
 
-    public Payment(String creditCardNumber, String cardholderName, String expiryDate, String cvv) {
-        //this.price = price;
+    public Payment(String creditCardNumber, String cardholderName, String expiryDate, String cvv, double amountPaid) {
         this.creditCardNumber = creditCardNumber;
         this.cardholderName = cardholderName;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
+        this.amountPaid = amountPaid;
     }
 
     //should call an addpassengers 

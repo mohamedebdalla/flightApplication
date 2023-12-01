@@ -1,14 +1,20 @@
 package main.project.flightApplication;
 
 public class Ticket {
-    private int ticketID;
+    private String ticketId;
+    private String ticketInsurance;
     
-    public Ticket(int ticketID) {
-        this.ticketID = ticketID;
+    public Ticket(String ticketId, String ticketInsurance) {
+        this.ticketId = ticketId;
+        this.ticketInsurance = ticketInsurance;
     }
 
-    public int getTicketID() {
-        return ticketID;
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    public String getTicketInsurance() {
+        return ticketInsurance;
     }
 
     //add passenger

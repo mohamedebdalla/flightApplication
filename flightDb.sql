@@ -106,12 +106,11 @@ DROP TABLE IF EXISTS `passengers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `passengers` (
-  `PassengerID` int NOT NULL,
+  `PassengerName` varchar(100) NOT NULL,
   `FlightID` int NOT NULL,
-  `SeatNumber` varchar(45) NOT NULL,
+  `SeatNumber` int NOT NULL,
+  `TicketID` varchar(45) NOT NULL,
   `TicketInsurance` varchar(45) NOT NULL,
-  `TicketNumber` varchar(45) NOT NULL,
-  PRIMARY KEY (`PassengerID`),
   KEY `FlightID_idx` (`FlightID`),
   CONSTRAINT `FlightID` FOREIGN KEY (`FlightID`) REFERENCES `flights` (`FlightID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -139,6 +138,7 @@ CREATE TABLE `payment` (
   `CardNumber` varchar(45) NOT NULL,
   `ExpiryDate` varchar(45) NOT NULL,
   `CVV` varchar(45) NOT NULL,
+  `TicketPrice` double NOT NULL,
   PRIMARY KEY (`CardholderName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
