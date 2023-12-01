@@ -4,6 +4,8 @@ import main.project.flightApplication.Controller.DBcore;
 import main.project.flightApplication.Payment;
 import main.project.flightApplication.Flight;
 import main.project.flightApplication.Passenger;
+import main.project.flightApplication.Controller.TicketController;
+import main.project.flightApplication.Controller.EmailController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +23,8 @@ public class PaymentGUI extends JFrame{
     private JTextField cvvField;
     private DBcore dbcore = DBcore.getInstance();
     private String ticketInsurance;
+    private TicketController ticketController;
+    private EmailController emailController = new EmailController();
 
     public PaymentGUI(Flight flight, double price, int seatNumber){
         //set up main frame 
@@ -166,6 +170,7 @@ public class PaymentGUI extends JFrame{
 
     private void displayTicketInfo(Passenger passenger, Flight flight) {
         //create a new frame to display ticket info
+        ticketController = new TicketController();
         JFrame ticketFrame = new JFrame("Ticket Information");
         ticketFrame.setSize(500, 500);
 
@@ -175,14 +180,15 @@ public class PaymentGUI extends JFrame{
         JLabel seatNumberLabel = new JLabel("Seat Number: " + passenger.getSeatNumber());
         JLabel ticketInsuranceLabel = new JLabel("Ticket Insurance: " + passenger.getTicket().getTicketInsurance());
         JLabel flightDateLabel = new JLabel("Flight Date: " + flight.getDepartureDate());
-        JLabel flightOriginLabel = new JLabel("Flight Origin: " + flight.getRoute().getOriginName(passenger.getFlightNumber()));
-        JLabel flightDestinationLabel = new JLabel("Flight Destination: " + flight.getRoute().getDestinationName(passenger.getFlightNumber()));
+        JLabel flightOriginLabel = new JLabel("Flight Origin: " + flight.getOrigin());
+        JLabel flightDestinationLabel = new JLabel("Flight Destination: " + flight.getDestination());
 
         //create layout panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel ticketPanel = new JPanel(new GridLayout(4, 2));
         JPanel flightPanel = new JPanel(new GridLayout(5, 2));
         JPanel buttonPanel = new JPanel(new FlowLayout());
+        JButton emailTicketButton = new JButton("Email Ticket");
 
         //add components to panels
         ticketPanel.add(ticketIdLabel);
@@ -194,7 +200,13 @@ public class PaymentGUI extends JFrame{
         flightPanel.add(flightDestinationLabel);
 
         buttonPanel.add(new JButton("Print Ticket"));
-        buttonPanel.add(new JButton("Email Ticket"));
+        buttonPanel.add(emailTicketButton);
+
+        emailTicketButton.addActionListener(e -> {
+            ticketController.generateTicketFile(passenger, flight);
+            emailController.configureEmailProperties(emailField.getText());
+            JOptionPane.showMessageDialog(PaymentGUI.this, "Ticket Emailed!");
+        });
 
         //add panels to main panel
         mainPanel.add(ticketPanel, BorderLayout.NORTH);
