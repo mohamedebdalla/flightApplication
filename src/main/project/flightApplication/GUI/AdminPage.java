@@ -112,10 +112,15 @@ public class AdminPage extends JFrame{
         leftPanel.add(manageAircrafts);
         leftPanel.add(manageDestinations);
 
+        manageFlights.addActionListener(e ->{
+            ManageFlights mF = new ManageFlights();
+        });
+
         managePanel.add(leftPanel, BorderLayout.WEST);
 
         return managePanel;
     }
+
 
     private JPanel printPage(AdminPage adminPage){
         JPanel printPanel = new JPanel();

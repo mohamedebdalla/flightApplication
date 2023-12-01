@@ -29,7 +29,7 @@ public class ManageFlights extends JFrame {
 
     public ManageFlights() {
         setTitle("Flight Management");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(400, 400);
 
         mainPanel = new JPanel();
