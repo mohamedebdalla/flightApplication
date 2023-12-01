@@ -103,6 +103,12 @@ public class PaymentGUI extends JFrame{
         String expiryDate = expiryDateField.getText();
         String cvv = cvvField.getText();
 
+        //validate the input fields
+        if (cardholderName.isEmpty() || email.isEmpty() || cardNumber.isEmpty() || expiryDate.isEmpty() || cvv.isEmpty()) {
+            JOptionPane.showMessageDialog(PaymentGUI.this, "Please fill in all the fields.");
+            return;
+        }
+
         try {
             String query = "INSERT INTO payment (CardholderName, Email, CardNumber, ExpiryDate, CVV) " +
                            "VALUES (?, ?, ?, ?, ?)";
@@ -119,6 +125,8 @@ public class PaymentGUI extends JFrame{
                 if (rowsAffected > 0) {
                     System.out.println("Payment data inserted into the database successfully.");
                     Payment newPayment = new Payment(cardNumber, cardholderName, expiryDate, cvv);
+                    //create a passenger and add it to the database
+                    //create a ticket and add it to the database
                     JOptionPane.showMessageDialog(PaymentGUI.this, "Payment Successful! Generating Ticket...");
                 } else {
                     System.out.println("Error inserting payment data into the database.");
