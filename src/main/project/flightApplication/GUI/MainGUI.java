@@ -67,7 +67,7 @@ public class MainGUI extends JFrame {
         });
 
         b2.addActionListener(e -> {
-            new LoginGUI(this, this);
+            new LoginGUI(this, this, "registered user");
         });
 
         b3.addActionListener(e -> {
@@ -81,12 +81,13 @@ public class MainGUI extends JFrame {
         });
 
         b4.addActionListener(e -> {
-            if(adminPage == null){
+            new LoginGUI(this, this, "admin");
+            /*if(adminPage == null){
                 adminPage = new AdminPage();
             }
             adminPage.setVisible(true);
             this.add(adminPage, BorderLayout.CENTER);
-            label.setText("Admin Page");
+            label.setText("Admin Page");*/
         });
     }
 
