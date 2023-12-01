@@ -2,10 +2,12 @@ package main.project.flightApplication.GUI;
 
 import main.project.flightApplication.Controller.DBcore;
 import main.project.flightApplication.Payment;
+import main.project.flightApplication.Booking;
 import main.project.flightApplication.Flight;
 import main.project.flightApplication.Passenger;
 import main.project.flightApplication.Controller.TicketController;
 import main.project.flightApplication.Controller.EmailController;
+import main.project.flightApplication.Controller.BookingController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +27,7 @@ public class PaymentGUI extends JFrame{
     private String ticketInsurance;
     private TicketController ticketController;
     private EmailController emailController = new EmailController();
+    private BookingController bookingController = new BookingController();
 
     public PaymentGUI(Flight flight, double price, int seatNumber){
         //set up main frame 
@@ -171,6 +174,7 @@ public class PaymentGUI extends JFrame{
     private void displayTicketInfo(Passenger passenger, Flight flight) {
         //create a new frame to display ticket info
         ticketController = new TicketController();
+        bookingController.addBooking(passenger.getFlightId(), emailField.getText(), passenger.getSeatNumber(), passenger.getTicket().getTicketId());
         JFrame ticketFrame = new JFrame("Ticket Information");
         ticketFrame.setSize(500, 500);
 
@@ -182,6 +186,7 @@ public class PaymentGUI extends JFrame{
         JLabel flightDateLabel = new JLabel("Flight Date: " + flight.getDepartureDate());
         JLabel flightOriginLabel = new JLabel("Flight Origin: " + flight.getOrigin());
         JLabel flightDestinationLabel = new JLabel("Flight Destination: " + flight.getDestination());
+
 
         //create layout panels
         JPanel mainPanel = new JPanel(new BorderLayout());
