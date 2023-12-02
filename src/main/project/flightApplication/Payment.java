@@ -15,7 +15,25 @@ public class Payment {
         this.amountPaid = amountPaid;
     }
 
-    //should call an addpassengers 
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public String getCardholderName() {
+        return cardholderName;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
 }
 
 

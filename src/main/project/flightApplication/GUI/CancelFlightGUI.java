@@ -45,6 +45,7 @@ public class CancelFlightGUI extends JFrame {
                    cancelFlightController.removeBooking(ticketId);
                    cancelFlightController.removePassenger(ticketId);
                    JOptionPane.showMessageDialog(null, "Flight has been cancelled.");
+                   dispose();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Ticket ID is invalid.");

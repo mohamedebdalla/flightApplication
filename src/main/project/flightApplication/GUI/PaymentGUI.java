@@ -3,11 +3,14 @@ package main.project.flightApplication.GUI;
 import main.project.flightApplication.Controller.DBcore;
 import main.project.flightApplication.Payment;
 import main.project.flightApplication.Booking;
+import main.project.flightApplication.CreditCard;
 import main.project.flightApplication.Flight;
 import main.project.flightApplication.Passenger;
 import main.project.flightApplication.Controller.TicketController;
 import main.project.flightApplication.Controller.EmailController;
 import main.project.flightApplication.Controller.BookingController;
+import main.project.flightApplication.CreditCard;
+import main.project.flightApplication.Receipt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 
 public class PaymentGUI extends JFrame{
     private JTextField passNameField;
@@ -28,6 +32,7 @@ public class PaymentGUI extends JFrame{
     private TicketController ticketController;
     private EmailController emailController = new EmailController();
     private BookingController bookingController = new BookingController();
+    private Receipt receipt = new Receipt();
 
     public PaymentGUI(Flight flight, double price, int seatNumber){
         //set up main frame 
@@ -137,6 +142,7 @@ public class PaymentGUI extends JFrame{
                 preparedStatement.setString(4, expiryDate);
                 preparedStatement.setString(5, cvv);
                 preparedStatement.setDouble(6, price);
+                CreditCard cc = new CreditCard(cardNumber, cvv, expiryDate);
 
                 int rowsAffected = preparedStatement.executeUpdate();
 
@@ -151,6 +157,7 @@ public class PaymentGUI extends JFrame{
                     insertPassengerData(newPassenger);
                     JOptionPane.showMessageDialog(PaymentGUI.this, "Payment Successful! Generating Ticket...");
                     displayTicketInfo(newPassenger, flight);
+                    displayReceipt(newPayment);
                 } else {
                     System.out.println("Error inserting payment data into the database.");
                 }
@@ -170,6 +177,43 @@ public class PaymentGUI extends JFrame{
     
         return ticketNumber;
     }
+
+    public void displayReceipt(Payment payment){
+        JFrame receiptFrame = new JFrame("Receipt");
+        receiptFrame.setSize(400, 300);
+    
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 10, 5, 10); // Add spacing between components
+    
+        addLabel("Credit Card Number:", payment.getCreditCardNumber(), mainPanel, gbc);
+        addLabel("Cardholder Name:", payment.getCardholderName(), mainPanel, gbc);
+        addLabel("Expiry Date:", payment.getExpiryDate(), mainPanel, gbc);
+        addLabel("CVV:", payment.getCvv(), mainPanel, gbc);
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        String formattedAmount = currencyFormat.format(payment.getAmountPaid());
+        addLabel("Ticket Price:", formattedAmount, mainPanel, gbc);
+    
+        receiptFrame.add(mainPanel);
+        receiptFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        receiptFrame.setVisible(true);
+    }
+    
+    private void addLabel(String labelText, String value, JPanel panel, GridBagConstraints gbc) {
+        JLabel label = new JLabel(labelText);
+        JLabel valueLabel = new JLabel(value);
+    
+        gbc.gridx = 0;
+        panel.add(label, gbc);
+    
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        panel.add(valueLabel, gbc);
+    }
+    
 
     private void displayTicketInfo(Passenger passenger, Flight flight) {
         //create a new frame to display ticket info
@@ -253,6 +297,5 @@ public class PaymentGUI extends JFrame{
             return;
         }
     }
-    
     
 }
