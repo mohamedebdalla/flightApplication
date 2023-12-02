@@ -62,5 +62,50 @@ public class EmailController {
             }
 
         }
+
+        public void cancellationEmail(String email){
+            
+        Properties properties = new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", 587);
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.transport.protocol", "smtps");
+
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("ensf480group26@gmail.com","bykd buyz isrm ipmb");
+                }
+        });
+        
+
+            Message message = new MimeMessage(session); 
+            try {
+                // Set the email content
+                message.setSubject("We're sorry to see you go!");
+                message.setText("Here's your cancellation confimation");
+
+                // Attach the ticket file
+                MimeBodyPart attachmentPart = new MimeBodyPart();
+                attachmentPart.attachFile(new File("ticket.txt"));
+
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(attachmentPart);
+
+                message.setContent(multipart);
+
+                // Set recipient email address
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+                // Send the email
+                Transport.send(message);
+
+                System.out.println("Email sent successfully!");
+            } catch (MessagingException | IOException e) {
+                e.printStackTrace();
+            }
+
+        }
 }
 
