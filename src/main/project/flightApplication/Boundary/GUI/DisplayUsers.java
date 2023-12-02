@@ -1,12 +1,15 @@
-    package main.project.flightApplication.Boundary.GUI;
+package main.project.flightApplication.Boundary.GUI;
 
-    import javax.swing.*;
-    import javax.swing.table.DefaultTableModel;
-    import java.awt.*;
-    import java.util.ArrayList;
 
-import main.project.flightApplication.Entity.Admin;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.ArrayList;
+import  main.project.flightApplication.Entity.Admin;
 import main.project.flightApplication.Entity.RegisteredUser;
+
+
 
     public class DisplayUsers extends JFrame {
         private Admin admin;
