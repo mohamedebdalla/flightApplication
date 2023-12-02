@@ -86,10 +86,12 @@ public class MainGUI extends JFrame {
             new LoginGUI(this, this, "admin");
             if(adminPage == null){
                 adminPage = new AdminPage();
+                adminPage.setVisible(true);
+                this.add(adminPage, BorderLayout.CENTER);
+                label.setText("Admin Page");
             }
-            adminPage.setVisible(true);
-            this.add(adminPage, BorderLayout.CENTER);
-            label.setText("Admin Page");
+            
+           
         });
 
         cancelButton.addActionListener(e ->{
