@@ -2,12 +2,14 @@ package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import main.project.flightApplication.BusinessClassSeat;
 import main.project.flightApplication.ComfortSeat;
 import main.project.flightApplication.OrdinarySeat;
 import main.project.flightApplication.SeatStrategy;
+import main.project.flightApplication.Controller.BookingController;
 import main.project.flightApplication.Flight;
 
 
@@ -17,6 +19,8 @@ public class SeatMap extends JFrame {
     private JPanel businessPanel = new JPanel();
     private JPanel comfortPanel = new JPanel();
     private JPanel ordinaryPanel = new JPanel();
+    private BookingController bookingController = new BookingController();
+    private ArrayList<Integer> bookedSeats = new ArrayList<>();
 
     private String clickedButton = null;
 
@@ -70,8 +74,6 @@ public class SeatMap extends JFrame {
         this.add(new JPanel(), BorderLayout.WEST);
         this.add(new JPanel(), BorderLayout.EAST);
         this.add(new JPanel(), BorderLayout.SOUTH);
-
-        
 
     }
 
@@ -146,6 +148,7 @@ public class SeatMap extends JFrame {
                 buttonClicked(flight, button);
             });
         }
+        
     }
 
     public void verifySeatSelection(Flight flight) {
@@ -177,14 +180,16 @@ public class SeatMap extends JFrame {
     }
 
     public void buttonClicked(Flight flight, JButton button){
+        bookedSeats = bookingController.getAllSeatsBooked(flight.getFlightID());
+        if(bookedSeats.contains(Integer.parseInt(button.getText().substring(1)))){
+            JOptionPane.showMessageDialog(this, "Seat is already booked");
+        }
+        else{
         button.setForeground(Color.red);
         clickedButton = button.getText();
         verifySeatSelection(flight);
         button.setForeground(Color.black);
+        }
     }
 
-    // public static void main(String[] args) {
-    //     SwingUtilities.invokeLater(() -> new SeatMap());
-    //     System.out.println("Hello World!");
-    // }
 }

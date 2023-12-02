@@ -4,7 +4,8 @@ import main.project.flightApplication.Booking;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.sql.ResultSet;
 
 public class BookingController {
 
@@ -24,5 +25,22 @@ public class BookingController {
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Integer> getAllSeatsBooked(int flightID){
+        ArrayList<Integer> seatsBooked = new ArrayList<>();
+        try{
+            String selectQuery = "SELECT seatOption FROM Bookings WHERE flightID = ?";
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(selectQuery)) {
+                preparedStatement.setInt(1, flightID);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    seatsBooked.add(resultSet.getInt("seatOption"));
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return seatsBooked;
     }
 }
