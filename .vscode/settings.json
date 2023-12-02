@@ -1,0 +1,38 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33060,
+            "driver": "MySQL",
+            "name": "Olympicarcherydb",
+            "database": "olympicarchery",
+            "username": "root",
+            "password": "Ucantcme123",
+            "connectionTimeout": 1000
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "flight",
+            "database": "flightdb",
+            "username": "root"
+        }
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Program Files (x86)\\MySQL\\Connector J 8.0\\mysql-connector-j-8.0.31.jar",
+        "c:\\Users\\Moe\\Downloads\\javax.mail.jar",
+        "/Users/ganahamed/Downloads/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar",
+        "c:\\Program Files (x86)\\MySQL\\Connector J 8.0\\mysql-connector-j-8.0.32.jar"
+    ]
+}
