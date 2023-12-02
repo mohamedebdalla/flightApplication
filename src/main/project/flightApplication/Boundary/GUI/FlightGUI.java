@@ -71,7 +71,7 @@ public class FlightGUI extends JFrame {
 
 
     public FlightGUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
         nextButton = new JButton("Next Page");
         nextButton.addActionListener(new ActionListener() {
