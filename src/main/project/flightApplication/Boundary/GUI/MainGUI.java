@@ -26,6 +26,7 @@ public class MainGUI extends JFrame {
         JButton registerButton = new JButton("Register");
         JButton adminButton = new JButton("Admin Login");
         JButton cancelButton = new JButton("Cancel flight");
+        JButton crewButton = new JButton("Crew Login");
 
         //creating panels
 
@@ -48,6 +49,7 @@ public class MainGUI extends JFrame {
         main.add(registerButton);
         main.add(adminButton);
         main.add(cancelButton);
+        main.add(crewButton);
 
         this.setTitle("Airline System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
