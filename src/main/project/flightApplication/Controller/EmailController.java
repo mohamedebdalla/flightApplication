@@ -15,11 +15,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import main.project.flightApplication.Entity.Passenger;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Properties;
+
 
 public class EmailController {
     
