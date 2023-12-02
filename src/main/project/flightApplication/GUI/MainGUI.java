@@ -21,11 +21,11 @@ public class MainGUI extends JFrame {
         label.setHorizontalAlignment(JLabel.CENTER);
 
         //creating buttons
-        JButton b1 = new JButton("Continue as a guest");
-        JButton b2 = new JButton("Login");
-        JButton b3 = new JButton("Register");
-        JButton b4 = new JButton("Admin Login");
-        JButton b5 = new JButton("Cancel flight");
+        JButton guestButton = new JButton("Continue as a guest");
+        JButton loginButton = new JButton("Login");
+        JButton registerButton = new JButton("Register");
+        JButton adminButton = new JButton("Admin Login");
+        JButton cancelButton = new JButton("Cancel flight");
 
         //creating panels
 
@@ -43,11 +43,11 @@ public class MainGUI extends JFrame {
 
         main.setPreferredSize(new Dimension(85,100));
         main.setLayout(new GridLayout(4,1,10,10));
-        main.add(b1);
-        main.add(b2);
-        main.add(b3);
-        main.add(b4);
-        main.add(b5);
+        main.add(guestButton);
+        main.add(loginButton);
+        main.add(registerButton);
+        main.add(adminButton);
+        main.add(cancelButton);
 
         this.setTitle("Airline System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,15 +62,15 @@ public class MainGUI extends JFrame {
 
         //Action Listeners
 
-        b1.addActionListener(e -> {
+        guestButton.addActionListener(e -> {
             displayPage(null);
         });
 
-        b2.addActionListener(e -> {
+        loginButton.addActionListener(e -> {
             new LoginGUI(this, this, "registered user");
         });
 
-        b3.addActionListener(e -> {
+        registerButton.addActionListener(e -> {
             if(registerPage == null){
                 registerPage = new RegisterPage(this);
             }
@@ -80,7 +80,7 @@ public class MainGUI extends JFrame {
             label.setText("Register Page");
         });
 
-        b4.addActionListener(e -> {
+        adminButton.addActionListener(e -> {
             new LoginGUI(this, this, "admin");
             if(adminPage == null){
                 adminPage = new AdminPage();
@@ -88,6 +88,10 @@ public class MainGUI extends JFrame {
             adminPage.setVisible(true);
             this.add(adminPage, BorderLayout.CENTER);
             label.setText("Admin Page");
+        });
+
+        cancelButton.addActionListener(e ->{
+           CancelFlightGUI cancelFlightGUI = new CancelFlightGUI();
         });
     }
 

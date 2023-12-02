@@ -51,7 +51,7 @@ public class AdminPage extends JFrame{
         //add action listeners to buttons
         browseButton.addActionListener(e -> cardLayout.show(cardPanel, "Browse"));
         manageButton.addActionListener(e -> cardLayout.show(cardPanel, "Manage"));
-        printButton.addActionListener(e -> cardLayout.show(cardPanel, "Print"));
+        printButton.addActionListener(e -> new DisplayUsers());
 
         getContentPane().setLayout(new BorderLayout());
 
