@@ -2,7 +2,6 @@ package main.project.flightApplication.Entity;
 
 import java.util.ArrayList;
 
-import main.project.flightApplication.Controller.DBcore;
 
 public class Flight {
     private ArrayList<CrewMember> crew;
