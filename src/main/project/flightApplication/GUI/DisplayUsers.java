@@ -45,7 +45,7 @@
             this.add(scrollPane, BorderLayout.CENTER);
 
             this.setTitle("User List");
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             this.pack();
             this.setVisible(true);
         }
