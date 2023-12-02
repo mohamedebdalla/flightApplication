@@ -1,7 +1,8 @@
 package main.project.flightApplication.Controller;
 import java.sql.*;
 import java.util.ArrayList;
-import main.project.flightApplication.Flight;
+
+import main.project.flightApplication.Entity.Flight;
 
 
 public class DBcore {

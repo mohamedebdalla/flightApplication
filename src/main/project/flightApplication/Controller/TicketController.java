@@ -3,8 +3,8 @@ package main.project.flightApplication.Controller;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-import main.project.flightApplication.Flight;
-import main.project.flightApplication.Passenger;
+import main.project.flightApplication.Entity.Flight;
+import main.project.flightApplication.Entity.Passenger;
 
 public class TicketController {
     public void generateTicketFile(Passenger passenger, Flight flight) {

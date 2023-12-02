@@ -1,10 +1,11 @@
 package main.project.flightApplication.Controller;
 
-import main.project.flightApplication.Booking;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import main.project.flightApplication.Entity.Booking;
+
 import java.sql.ResultSet;
 
 public class CancelFlightController {

@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import main.project.flightApplication.Passenger;
+import main.project.flightApplication.Entity.Passenger;
 
 public class StaffController {
     DBcore db = DBcore.getInstance();
