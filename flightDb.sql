@@ -61,6 +61,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+INSERT INTO `bookings` VALUES (2,'mohamed.ebdalla17@gmail.com',21,'TICKET1701499540559'),(6,'mo',21,'TICKET1701499638650'),(18,'mohamed.ebdalla17@gmail.com',21,'TICKET1701499828858');
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,6 +137,8 @@ CREATE TABLE `passengers` (
   `SeatNumber` int NOT NULL,
   `TicketID` varchar(45) NOT NULL,
   `TicketInsurance` varchar(45) NOT NULL,
+  `FlightNumber` varchar(45) NOT NULL,
+  PRIMARY KEY (`TicketID`),
   KEY `FlightID_idx` (`FlightID`),
   CONSTRAINT `FlightID` FOREIGN KEY (`FlightID`) REFERENCES `flights` (`FlightID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -147,7 +150,7 @@ CREATE TABLE `passengers` (
 
 LOCK TABLES `passengers` WRITE;
 /*!40000 ALTER TABLE `passengers` DISABLE KEYS */;
-INSERT INTO `passengers` VALUES ('Mohamed',1,23,'TICKET1701464945882','yes'),('Mohamed',6,21,'TICKET1701465246936','yes'),('Moe',2,11,'TICKET1701470245076','yes'),('Test',1,26,'TICKET1701470537282','yes'),('john',2,11,'TICKET1701470729858','yes'),('moa',1,11,'TICKET1701471792016','yes'),('m',5,22,'TICKET1701473021547','yes'),('BookingTest',2,22,'TICKET1701475024323','yes'),('john',1,24,'TICKET1701475108355','yes'),('Jer',2,21,'TICKET1701481065208','yes'),('Gana',15,2,'TICKET1701488663145','yes');
+INSERT INTO `passengers` VALUES ('Johnathan',2,21,'TICKET1701499540559','yes','FL002'),('jahe',6,21,'TICKET1701499638650','yes','FL006'),('jah',18,21,'TICKET1701499828858','yes','FL018'),('meo',6,22,'TICKET1701500024862','yes','FL006');
 /*!40000 ALTER TABLE `passengers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +178,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES ('339829928','mohamed.ebdalla17@gmail.com','9928192','09/2025','192',140),('882178817','mohamed.ebdalla17@gmail.com','00192891','09/2023','2291',140),('fef','mohamed.ebdalla17@gmail.com','9928918','09/2024','112',100),('Gana Hamed','mohamed.ebdalla17@gmail.com','47362519','09/2025','716',250),('gjug','jjut','gjmgm','hgj','hg',100),('Jer','mohamed.ebdalla17@gmail.com','00293','09/2010','229',100),('john','mohamed.ebdalla17@gmail.com','291829','09/2020','019',100),('johnathan','mohamed.ebdalla17@gmail.com','01939','09/2023','392',100),('mahe','mohamed.ebdalla17@gmail.com','22918','92/10','991',140),('mohamed','mohamed.ebdalla17@gmail.com','9928217','29/20','819',100),('Mohamed Ebdalla','mohamed.ebdalla17@gmail.com','33948193','09/2025','628',100),('Mohamed mo','mohamed.ebdalla17@gmail.com','299281','09/2025','817',100);
+INSERT INTO `payment` VALUES ('339829928','mohamed.ebdalla17@gmail.com','9928192','09/2025','192',140),('882178817','mohamed.ebdalla17@gmail.com','00192891','09/2023','2291',140),('cardholder','mohamed.ebdalla17@gmail.com','223921099','09/2024','343',100),('cardholdernew','mohamed.ebdalla17@gmail.com','88271','09/2026','762',100),('edin','mo','9818','2098','99',100),('fef','mohamed.ebdalla17@gmail.com','9928918','09/2024','112',100),('Gana Hamed','mohamed.ebdalla17@gmail.com','47362519','09/2025','716',250),('gjug','jjut','gjmgm','hgj','hg',100),('Jer','mohamed.ebdalla17@gmail.com','00293','09/2010','229',100),('john','mohamed.ebdalla17@gmail.com','291829','09/2020','019',100),('John Doe','mohamed.ebdalla17@gmail.com','99188','09/2024','1182',100),('johnathan','mohamed.ebdalla17@gmail.com','01939','09/2023','392',100),('mahe','mohamed.ebdalla17@gmail.com','22918','92/10','991',140),('mmdaow','mohamed.ebdalla17@gmail.com','22917','09/2029','192',100),('mmmm','mohamed.ebdalla17@gmail.com','22918','20/2022','201',100),('mohamed','mohamed.ebdalla17@gmail.com','9928217','29/20','819',100),('Mohamed Ebdalla','mohamed.ebdalla17@gmail.com','33948193','09/2025','628',100),('Mohamed mo','mohamed.ebdalla17@gmail.com','299281','09/2025','817',100),('test5','emai','f','f','w',100);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-01 21:50:22
+-- Dump completed on 2023-12-02  0:13:12
