@@ -29,6 +29,8 @@ public class MainGUI extends JFrame {
         JButton cancelButton = new JButton("Cancel flight");
         JButton staffButton = new JButton("Staff Login");
 
+        JButton close = new JButton("Close");
+
         //creating panels
 
         header.setPreferredSize(new Dimension(50,60));
@@ -41,6 +43,9 @@ public class MainGUI extends JFrame {
         right.setPreferredSize(new Dimension(50,100));
 
         footer.setPreferredSize(new Dimension(50,50));
+        footer.add(close);
+
+        close.addActionListener(e -> System.exit(0));
 
 
         main.setPreferredSize(new Dimension(85,100));
@@ -118,7 +123,7 @@ public class MainGUI extends JFrame {
         header.setVisible(false);
         left.setVisible(false);
         right.setVisible(false);
-        footer.setVisible(false);
+        //footer.setVisible(false);
         userPage.setVisible(true);
         if(name !=null){
             userPage.forUsers(name);

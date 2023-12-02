@@ -39,23 +39,19 @@ public class SeatOption extends JFrame {
         ordinary.addActionListener(e ->{
             seatMap = new SeatMap(flight);
             seatMap.getOrdinarySeat(flight);
-//            topPanel.setVisible(false);
-//            mainPanel.setVisible(false);
-//            this.add(seatMap.topPanel, BorderLayout.NORTH);
-//            this.add(seatMap.mainPanel, BorderLayout.CENTER);
+            this.dispose();
         });
         comfort.addActionListener(e ->{
             seatMap = new SeatMap(flight);
             seatMap.getComfortSeat(flight);
+            this.dispose();
         });
         business.addActionListener(e ->{
             seatMap = new SeatMap(flight);
             seatMap.getBusinessSeat(flight);
+            this.dispose();
         });
     }
 
-    // public static void main(String[] args) {
-    //     SwingUtilities.invokeLater(() -> new SeatOption(Flight flight));
-    //     System.out.println("Hello World!");
-    // }
+
 }

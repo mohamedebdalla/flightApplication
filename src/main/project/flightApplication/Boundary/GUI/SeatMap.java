@@ -34,26 +34,13 @@ public class SeatMap extends JFrame {
 
 
         JButton backButton = new JButton("Back");
-        JButton nextButton = new JButton("Next");
-
-
         backButton.addActionListener(e ->{
             dispose();
-            System.out.println("Go Back");
-        });
-
-        nextButton.addActionListener(e -> {
-            if(clickedButton == null){
-                System.out.println("Please select a button");
-            }
-            else {
-                System.out.println(clickedButton);
-            }
+            SeatOption options = new SeatOption(flight);
         });
 
         topPanel.setPreferredSize(new Dimension(100,30));
         topPanel.add(backButton);
-        topPanel.add(nextButton);
 
         mainPanel.setLayout(new GridLayout(3,1,0,10));
 
@@ -61,14 +48,15 @@ public class SeatMap extends JFrame {
         comfortPanel.setPreferredSize(new Dimension(500,300));
         ordinaryPanel.setPreferredSize(new Dimension(500,700));
 
-        businessPanel.setBackground(Color.black);
-        comfortPanel.setBackground(Color.black);
-        ordinaryPanel.setBackground(Color.black);
+        businessPanel.setBackground(Color.decode("#e7eff6"));
+        comfortPanel.setBackground(Color.decode("#e7eff6"));
+        ordinaryPanel.setBackground(Color.decode("#e7eff6"));
 
         mainPanel.add(businessPanel);
         mainPanel.add(comfortPanel);
         mainPanel.add(ordinaryPanel);
 
+        this.setBackground(Color.decode("#e7eff6"));
         this.add(mainPanel, BorderLayout.CENTER);
         this.add(topPanel, BorderLayout.NORTH);
         this.add(new JPanel(), BorderLayout.WEST);
@@ -92,12 +80,12 @@ public class SeatMap extends JFrame {
                     businessPanel.add(button);
                     num++;
                 } else {
-                    emptySpace.setBackground(Color.black);
+                    emptySpace.setBackground(Color.decode("#e7eff6"));
                     businessPanel.add(emptySpace);
                 }
             }
             else {
-                emptySpace.setBackground(Color.black);
+                emptySpace.setBackground(Color.decode("#e7eff6"));
                 businessPanel.add(emptySpace);
             }
             button.addActionListener(e ->{
@@ -119,7 +107,7 @@ public class SeatMap extends JFrame {
                 comfortPanel.add(button);
                 num++;
             } else {
-                emptySpace.setBackground(Color.black);
+                emptySpace.setBackground(Color.decode("#e7eff6"));
                 comfortPanel.add(emptySpace);
             }
             button.addActionListener(e ->{
@@ -138,7 +126,7 @@ public class SeatMap extends JFrame {
             int columnIndex = (i - 1) % 8; // Calculate the column index based on the button number
 
             if (Arrays.asList(specificColumns).contains(columnIndex)) {
-                emptySpace.setBackground(Color.black);
+                emptySpace.setBackground(Color.decode("#e7eff6"));
                 ordinaryPanel.add(emptySpace);
             } else {
                 ordinaryPanel.add(button);
@@ -189,6 +177,7 @@ public class SeatMap extends JFrame {
         clickedButton = button.getText();
         verifySeatSelection(flight);
         button.setForeground(Color.black);
+        this.dispose();
         }
     }
 

@@ -90,14 +90,13 @@ public class PaymentGUI extends JFrame{
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         //add action listeners to buttons
-        payButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        payButton.addActionListener(e-> {
+
                 // Insert data into the database
                 insertPaymentData(flight, seatNumber, price);
 
                 //JOptionPane.showMessageDialog(PaymentGUI.this, "Payment Successful!");
-            }
+
         });
 
         insuranceButton.addActionListener(e -> {
@@ -236,7 +235,13 @@ public class PaymentGUI extends JFrame{
         JPanel ticketPanel = new JPanel(new GridLayout(4, 2));
         JPanel flightPanel = new JPanel(new GridLayout(5, 2));
         JPanel buttonPanel = new JPanel(new FlowLayout());
+
         JButton emailTicketButton = new JButton("Email Ticket");
+        JButton printReceipt = new JButton("View Receipt");
+        JButton backToMain = new JButton("Back to Main");
+        JButton closeProgram = new JButton("Exit");
+
+
 
         //add components to panels
         ticketPanel.add(ticketIdLabel);
@@ -247,8 +252,18 @@ public class PaymentGUI extends JFrame{
         flightPanel.add(flightOriginLabel);
         flightPanel.add(flightDestinationLabel);
 
-        buttonPanel.add(new JButton("Print Ticket"));
+
         buttonPanel.add(emailTicketButton);
+        buttonPanel.add(printReceipt);
+        buttonPanel.add(backToMain);
+        buttonPanel.add(closeProgram);
+
+        backToMain.addActionListener(e -> {
+            JButton back = new JButton("Back to Main");
+            MainGUI newGui = new MainGUI();;
+        });
+
+        closeProgram.addActionListener(e -> System.exit(0));
 
         emailTicketButton.addActionListener(e -> {
             ticketController.generateTicketFile(passenger, flight);

@@ -12,7 +12,6 @@ public class UserPage extends JPanel {
     public JPanel center = new JPanel();
     public JPanel side = new JPanel();
     private JLabel label = new JLabel("User Page");
-    // private JLabel imageLabel = createImageLabel("flightPic.jpg");
     private FlightController flightController = new FlightController();
     private JComboBox<String> originField;
     private JComboBox<String> destField;
@@ -20,20 +19,14 @@ public class UserPage extends JPanel {
     private ArrayList<String> destination = flightController.getAllDest();
     private ArrayList<String> departureOrigin = flightController.getAllDepartureOrigin();
     private ArrayList<String> dates = flightController.getAllDepartureDates();
-    // private String[] origin = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-    // private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-    
 
     public UserPage(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
         JButton browse = new JButton("Search Flights");
 
-
-
         top.setPreferredSize(new Dimension(100, 40));
         top.add(label);
-        top.setBackground(Color.BLUE);
-        center.setBackground(Color.CYAN);
+        top.setBackground(Color.decode("#63ace5"));
         side.setPreferredSize(new Dimension(150, 100));
         side.setLayout(new FlowLayout(FlowLayout.LEFT));
         side.add(browse);
@@ -49,13 +42,8 @@ public class UserPage extends JPanel {
             Browse();
 
         });
-
-        //addBack();
-
-
-
-
     }
+
     public void addBack(){
         JButton back = new JButton("Back to Main");
         side.add(back);
@@ -92,7 +80,7 @@ public class UserPage extends JPanel {
         });
 
         JPanel display = new JPanel(); // Panel to hold flight details
-        display.setBackground(Color.GRAY);
+        display.setBackground(Color.decode("#e7eff6"));
 
         searchButton.addActionListener(e -> {
             mainGUI.setSize(new Dimension(1030,600));
@@ -107,7 +95,7 @@ public class UserPage extends JPanel {
             for (Flight flight : flights) {
                 // Create a panel for each flight
                 JPanel flightPanel = new JPanel();
-                flightPanel.setBackground(Color.lightGray);
+                flightPanel.setBackground(Color.decode("#e7eff6"));
                 flightPanel.setLayout(new BoxLayout(flightPanel, BoxLayout.X_AXIS)); // Horizontal layout
 
                 JLabel flightImageLabel = createImageLabel("flightPic.jpg"); // Load an image for each flight
@@ -155,7 +143,7 @@ public class UserPage extends JPanel {
         });
 
         //properties of the info bar
-        info.setBackground(Color.green);
+        info.setBackground(Color.decode("#adcbe3"));
         info.setPreferredSize(new Dimension(500, 40));
         info.add(originLabel);
         info.add(originField);
