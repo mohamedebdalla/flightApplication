@@ -1,6 +1,4 @@
-package main.project.flightApplication.Boundary.GUI;
-
-import main.project.flightApplication.Controller.DBcore;
+package main.project.flightApplication.Controller;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
