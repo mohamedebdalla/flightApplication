@@ -41,4 +41,16 @@ public class CancelFlightController {
             e.printStackTrace();
         }
     }
+
+    public void removePassenger(String ticketID){
+        try{
+            String deleteQuery = "DELETE FROM Passengers WHERE ticketID = ?";
+            try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(deleteQuery)) {
+                preparedStatement.setString(1, ticketID);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

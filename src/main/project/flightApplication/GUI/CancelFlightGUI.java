@@ -2,7 +2,6 @@ package main.project.flightApplication.GUI;
 
 import javax.swing.*;
 
-import main.project.flightApplication.Controller.BookingController;
 import main.project.flightApplication.Controller.CancelFlightController;
 
 import java.awt.*;
@@ -15,13 +14,14 @@ public class CancelFlightGUI extends JFrame {
     private JTextField ticketIdField;
     private CancelFlightController cancelFlightController = new CancelFlightController();
     private ArrayList<String> ticketIDs = cancelFlightController.getAllTicketIDs();
+
     
 
     public CancelFlightGUI() {
         setTitle("Cancel Flight");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 200);
-
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(3, 2, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -42,14 +42,12 @@ public class CancelFlightGUI extends JFrame {
 
                 if (ticketIDs.contains(ticketId)) {
                    cancelFlightController.removeBooking(ticketId);
+                   cancelFlightController.removePassenger(ticketId);
+                   JOptionPane.showMessageDialog(null, "Flight has been cancelled.");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Ticket ID is invalid.");
-                }
-
-                // Perform cancellation logic here
-
-                JOptionPane.showMessageDialog(null, "Flight has been cancelled.");
+                }       
             }
         });
 
@@ -59,5 +57,6 @@ public class CancelFlightGUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new CancelFlightGUI());
+        
     }
 }

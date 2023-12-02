@@ -226,8 +226,8 @@ public class PaymentGUI extends JFrame{
 
     private void insertPassengerData(Passenger passenger) {
         try {
-            String query = "INSERT INTO passengers (PassengerName, FlightID, SeatNumber, TicketID, TicketInsurance) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO passengers (PassengerName, FlightID, SeatNumber, TicketID, TicketInsurance, FlightNumber) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
     
             try (PreparedStatement preparedStatement = dbcore.getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1, passenger.getPassengerName());
@@ -235,6 +235,7 @@ public class PaymentGUI extends JFrame{
                 preparedStatement.setInt(3, passenger.getSeatNumber());
                 preparedStatement.setString(4, passenger.getTicket().getTicketId());
                 preparedStatement.setString(5, passenger.getTicket().getTicketInsurance());
+                preparedStatement.setString(6, passenger.getFlightNumber());
     
                 int rowsAffected = preparedStatement.executeUpdate();
     
