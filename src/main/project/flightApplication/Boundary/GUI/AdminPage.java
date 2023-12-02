@@ -1,8 +1,5 @@
 package main.project.flightApplication.Boundary.GUI;
 
-import main.project.flightApplication.Controller.DBcore;
-import main.project.flightApplication.Entity.Admin;
-
 import javax.swing.*;
 import java.awt.*;
 

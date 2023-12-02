@@ -2,7 +2,6 @@ package main.project.flightApplication.Entity;
 
 import java.util.ArrayList;
 
-import main.project.flightApplication.Controller.DBcore;
 
 public class Flight {
     private ArrayList<CrewMember> crew;
@@ -18,8 +17,6 @@ public class Flight {
     private String origin;
     private String destination;
     private int aircraftID;
-
-    private DBcore db = DBcore.getInstance();
     
     public Flight(int flightID, String flightNumber, String Origin, String Destination, String DepartureDate, String DepartureTime, String ArrivalDate, String ArrivalTime, int AircraftID){
         this.flightID = flightID;
@@ -32,13 +29,7 @@ public class Flight {
         this.arrivalTime = ArrivalTime;
         this.aircraftID = AircraftID;
     }
-    // public Flight(ArrayList<CrewMember> crew, ArrayList<Passenger> passengers, Aircraft aircraft, String originName, String destinationName, int flightID) {
-    //     this.crew = crew;
-    //     this.passengers = passengers;
-    //     this.aircraft = aircraft;
-    //     this.route = new FlightRoute(originName, destinationName); //composition
-    //     this.flightID = flightID;
-    // }
+
     
     // Getters
     public ArrayList<CrewMember> getCrew() {

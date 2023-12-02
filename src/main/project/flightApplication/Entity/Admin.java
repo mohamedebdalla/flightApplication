@@ -5,16 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import main.project.flightApplication.Boundary.GUI.RegisterPage;
 import main.project.flightApplication.Controller.DBcore;
 
 
 public class Admin {
     private DBcore dbcore = DBcore.getInstance();
-    public Admin() {
-        // TODO Auto-generated constructor stub
-        
-    }
+
         //method for adding users into the database
     public void addRegisteredUser(String username, String password, String email, String userType) {
         try {
