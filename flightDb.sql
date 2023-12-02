@@ -40,6 +40,31 @@ INSERT INTO `aircrafts` VALUES (1,'WestJet'),(2,'Delta'),(3,'Lufthansa'),(4,'Emi
 UNLOCK TABLES;
 
 --
+-- Table structure for table `bookings`
+--
+
+DROP TABLE IF EXISTS `bookings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bookings` (
+  `flightID` int NOT NULL,
+  `email` varchar(120) DEFAULT NULL,
+  `seatOption` int DEFAULT NULL,
+  `ticketID` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`flightID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bookings`
+--
+
+LOCK TABLES `bookings` WRITE;
+/*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `crews`
 --
 
@@ -122,6 +147,7 @@ CREATE TABLE `passengers` (
 
 LOCK TABLES `passengers` WRITE;
 /*!40000 ALTER TABLE `passengers` DISABLE KEYS */;
+INSERT INTO `passengers` VALUES ('Mohamed',1,23,'TICKET1701464945882','yes'),('Mohamed',6,21,'TICKET1701465246936','yes'),('Moe',2,11,'TICKET1701470245076','yes'),('Test',1,26,'TICKET1701470537282','yes'),('john',2,11,'TICKET1701470729858','yes'),('moa',1,11,'TICKET1701471792016','yes'),('m',5,22,'TICKET1701473021547','yes'),('BookingTest',2,22,'TICKET1701475024323','yes'),('john',1,24,'TICKET1701475108355','yes'),('Jer',2,21,'TICKET1701481065208','yes'),('Gana',15,2,'TICKET1701488663145','yes');
 /*!40000 ALTER TABLE `passengers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,6 +175,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+INSERT INTO `payment` VALUES ('339829928','mohamed.ebdalla17@gmail.com','9928192','09/2025','192',140),('882178817','mohamed.ebdalla17@gmail.com','00192891','09/2023','2291',140),('fef','mohamed.ebdalla17@gmail.com','9928918','09/2024','112',100),('Gana Hamed','mohamed.ebdalla17@gmail.com','47362519','09/2025','716',250),('gjug','jjut','gjmgm','hgj','hg',100),('Jer','mohamed.ebdalla17@gmail.com','00293','09/2010','229',100),('john','mohamed.ebdalla17@gmail.com','291829','09/2020','019',100),('johnathan','mohamed.ebdalla17@gmail.com','01939','09/2023','392',100),('mahe','mohamed.ebdalla17@gmail.com','22918','92/10','991',140),('mohamed','mohamed.ebdalla17@gmail.com','9928217','29/20','819',100),('Mohamed Ebdalla','mohamed.ebdalla17@gmail.com','33948193','09/2025','628',100),('Mohamed mo','mohamed.ebdalla17@gmail.com','299281','09/2025','817',100);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30 15:34:18
+-- Dump completed on 2023-12-01 21:03:29
