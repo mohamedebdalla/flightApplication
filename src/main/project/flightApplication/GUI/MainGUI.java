@@ -82,12 +82,12 @@ public class MainGUI extends JFrame {
 
         b4.addActionListener(e -> {
             new LoginGUI(this, this, "admin");
-            /*if(adminPage == null){
+            if(adminPage == null){
                 adminPage = new AdminPage();
             }
             adminPage.setVisible(true);
             this.add(adminPage, BorderLayout.CENTER);
-            label.setText("Admin Page");*/
+            label.setText("Admin Page");
         });
     }
 
