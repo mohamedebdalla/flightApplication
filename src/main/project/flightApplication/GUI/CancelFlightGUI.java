@@ -19,8 +19,9 @@ public class CancelFlightGUI extends JFrame {
 
     public CancelFlightGUI() {
         setTitle("Cancel Flight");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 200);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setSize(300,200);
+        this.setVisible(true);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(3, 2, 10, 10));
