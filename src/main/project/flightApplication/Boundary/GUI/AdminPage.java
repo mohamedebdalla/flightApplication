@@ -49,7 +49,7 @@ public class AdminPage extends JFrame{
         cardLayout.show(cardPanel, "Browse");
 
         //add action listeners to buttons
-        browseButton.addActionListener(e -> cardLayout.show(cardPanel, "Browse"));
+        browseButton.addActionListener(e -> new FlightGUI());
         manageButton.addActionListener(e -> cardLayout.show(cardPanel, "Manage"));
         printButton.addActionListener(e -> new DisplayUsers());
 

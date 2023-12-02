@@ -20,8 +20,8 @@ public class UserPage extends JPanel {
     private ArrayList<String> destination = flightController.getAllDest();
     private ArrayList<String> departureOrigin = flightController.getAllDepartureOrigin();
     private ArrayList<String> dates = flightController.getAllDepartureDates();
-    private String[] origin = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-    private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+    // private String[] origin = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+    // private String[] desination = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
     
 
     public UserPage(MainGUI mainGUI) {

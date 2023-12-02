@@ -119,6 +119,5 @@ public class MainGUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MainGUI());
-        System.out.println("Hello World!");
     }
 }

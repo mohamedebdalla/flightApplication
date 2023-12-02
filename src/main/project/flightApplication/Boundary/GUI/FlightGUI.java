@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import main.project.flightApplication.Controller.FlightController;
 import main.project.flightApplication.Entity.Flight;
@@ -46,7 +45,7 @@ public class FlightGUI extends JFrame {
 
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.Y_AXIS));
-        JLabel imageLabel = createImageLabel("flightApplication/flightPic.jpg");
+        JLabel imageLabel = createImageLabel("flightPic.jpg");
         imagePanel.add(imageLabel);
 
         JPanel detailsPanel = new JPanel();
@@ -104,7 +103,7 @@ public class FlightGUI extends JFrame {
 
     public JLabel createImageLabel(String imagePath) {
         ImageIcon imageIcon = new ImageIcon(imagePath);
-        Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image image = imageIcon.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(image);
         return new JLabel(scaledIcon);
     }
@@ -112,7 +111,6 @@ public class FlightGUI extends JFrame {
     private void updatePrevButtonVisibility() {
         if (currentIndex > 0) {
             prevButton.setVisible(true); // Set previous button visible if it's beyond the initial page and not at the end
-            System.out.print("prec");
         } else {
             prevButton.setVisible(false); // Hide previous button
         }
@@ -126,15 +124,5 @@ public class FlightGUI extends JFrame {
             nextButton.setVisible(true); // Show next button if there are more pages
         }
     }
-    // public static void main(String[] args) {
-    //     SwingUtilities.invokeLater(() -> {
-    //         FlightGUI display = new FlightGUI();
-    //         FlightController flightController = new FlightController(); // Create an instance of FlightController
-    //         ArrayList<Flight> flights = flightController.getAllFlights(); // Call getAllFlights() on the instance
 
-    //         if (!flights.isEmpty()) {
-    //             display.displayFlight(flights.get(0));
-    //         }
-    //     });
-    // }
 }
