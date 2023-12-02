@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainGUI extends JFrame {
+    private StaffGUI staffGUI;
     private AdminPage adminPage;
     private RegisterPage registerPage;
     private UserPage userPage;
@@ -95,8 +96,20 @@ public class MainGUI extends JFrame {
         cancelButton.addActionListener(e ->{
            CancelFlightGUI cancelFlightGUI = new CancelFlightGUI();
         });
-    }
 
+        staffButton.addActionListener(e ->{
+            new LoginGUI(this,this,"staff");
+            label.setText("Staff Page");
+        });
+    }
+    public void displayStaffPage(){
+        if(staffGUI == null){
+            staffGUI = new StaffGUI(this);
+        }
+        main.setVisible(false);
+        left.setVisible(false);
+        this.add(staffGUI.panel, BorderLayout.WEST);
+    }
     public void displayPage(String name){
         if (userPage == null) {
             userPage = new UserPage(this);
@@ -116,7 +129,6 @@ public class MainGUI extends JFrame {
         this.add(userPage.center,BorderLayout.CENTER);
         this.add(userPage.side, BorderLayout.WEST);
         label.setText("Browse Flight");
-        System.out.println("Continue as guest");
     }
 
     public static void main(String[] args) {

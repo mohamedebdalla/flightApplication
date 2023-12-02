@@ -76,6 +76,9 @@ public class LoginGUI extends JDialog{
             AdminPage adminPage = new AdminPage();
             System.out.println("admin page display");
         }
+        else if(userType == "staff"){
+            gui.displayStaffPage();
+        }
 
     }
 

@@ -11,22 +11,46 @@ import main.project.flightApplication.Controller.StaffController;
 import main.project.flightApplication.Entity.Passenger;
 
 
-public class StaffGUI extends JFrame {
-
-    public StaffGUI() {
-        displayPassengers();
-    }
+public class StaffGUI extends JPanel {
+    private MainGUI mainGUI;
     StaffController staffController = new StaffController();
 
     ArrayList<Passenger> passengers = staffController.getPassengers();
+
+    JPanel panel = new JPanel();
+
+
+    public StaffGUI(MainGUI frame) {
+        this.mainGUI = frame;
+        JButton browsePassengers = new JButton("Browse Passengers");
+        JButton back = new JButton("Back to Main");
+
+        browsePassengers.addActionListener(e ->{
+            displayPassengers();
+        });
+
+        back.addActionListener(e ->{
+            MainGUI mainGUI = new MainGUI();
+        });
+
+
+        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+        panel.add(browsePassengers);
+        panel.add(back);
+
+        //displayPassengers();
+    }
+
     public void displayPassengers(){
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("Name");
-            model.addColumn("FlightID");
-            model.addColumn("Seat Number");
-            model.addColumn("TicketID");
-            model.addColumn("Ticket Insurance");
-            model.addColumn("Flight Number");
+        JFrame frame = new JFrame();
+        frame.setSize(800,400);
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Name");
+        model.addColumn("FlightID");
+        model.addColumn("Seat Number");
+        model.addColumn("TicketID");
+        model.addColumn("Ticket Insurance");
+        model.addColumn("Flight Number");
     
 
      for (Passenger passenger : passengers) {
@@ -49,16 +73,12 @@ public class StaffGUI extends JFrame {
             JScrollPane scrollPane = new JScrollPane(table);
 
             // Add scroll pane to the frame
-            this.add(scrollPane, BorderLayout.CENTER);
+            frame.add(scrollPane, BorderLayout.CENTER);
 
-            this.setTitle("Passenger List");
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.pack();
-            this.setVisible(true);
+            frame.setVisible(true);
+
 
     }
 
-    public static void main(String[] args) {
-            SwingUtilities.invokeLater(() -> new StaffGUI());
-        }
+
 }
